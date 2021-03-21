@@ -7,7 +7,7 @@
 - [x] build deck class
 - [x] build card class
 - [x] set up AJAX GET fetch request to decks index
-- [ ] append decks to DOM
+- [x] append decks to DOM
 - [x] set up AJAX GET fetch request to cards index
 - [ ] append cards to DOM
 
