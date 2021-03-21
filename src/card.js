@@ -6,6 +6,16 @@ class Card {
     this.deckId = deckId
     Card.all.push(this)
   }
+
+  renderCard() {
+    const li = document.createElement("li")
+    const deck = Deck.all.find(deck => deck.id === this.deckId).subject
+    const ol = document.getElementById(`${deck}`+" cards").children[0]
+
+    li.id = `Card ${this.id}`
+    li.innerText = this.question
+    ol.appendChild(li)
+  }
 }
 
 Card.all = [];
