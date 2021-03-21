@@ -5,10 +5,10 @@
 ### Sprint 1: Connect JS Files / Fetch GET Requests
 - [x] generate HTML in index.html and connect js files
 - [x] build deck class
-- [ ] build card class
+- [x] build card class
 - [x] set up AJAX GET fetch request to decks index
 - [ ] append decks to DOM
-- [ ] set up AJAX GET fetch request to cards index
+- [x] set up AJAX GET fetch request to cards index
 - [ ] append cards to DOM
 
 ### Sprint 2: New Forms / Fetch POST Requests
