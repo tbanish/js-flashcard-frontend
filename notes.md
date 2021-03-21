@@ -9,7 +9,7 @@
 - [x] set up AJAX GET fetch request to decks index
 - [x] append decks to DOM
 - [x] set up AJAX GET fetch request to cards index
-- [ ] append cards to DOM
+- [x] append cards to DOM
 
 ### Sprint 2: New Forms / Fetch POST Requests
 - [ ] build new deck form
