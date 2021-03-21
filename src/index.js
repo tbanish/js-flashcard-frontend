@@ -11,7 +11,20 @@ function loadDecks() {
   .then(decks => {
     for (const deck of decks.data) {
       const subject = deck.attributes.subject
-      const newDeck = new Deck(deck.id, subject)
+      const deckId = parseInt(deck.id)
+      const newDeck = new Deck(deckId, subject)
+      const newDeckCards = deck.attributes.cards
+      createCards(newDeckCards)
     }
   })
+}
+
+function createCards(newDeckCards) {
+  for (const card of newDeckCards) {
+    const id = card.id
+    const question = card.question
+    const answer = card.answer
+    const deckId = card.deck_id
+    const newCard = new Card(id, question, answer, deckId)
+  }
 }
