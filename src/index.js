@@ -27,5 +27,6 @@ function createCards(newDeckCards) {
     const answer = card.answer
     const deckId = card.deck_id
     const newCard = new Card(id, question, answer, deckId)
+    newCard.renderCard()
   }
 }
