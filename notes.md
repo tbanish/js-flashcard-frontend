@@ -3,10 +3,10 @@
 ## FRONTEND
 
 ### Sprint 1: Connect JS Files / Fetch GET Requests
-- [ ] generate HTML in index.html and connect js files
-- [ ] build deck class
+- [x] generate HTML in index.html and connect js files
+- [x] build deck class
 - [ ] build card class
-- [ ] set up AJAX GET fetch request to decks index
+- [x] set up AJAX GET fetch request to decks index
 - [ ] append decks to DOM
 - [ ] set up AJAX GET fetch request to cards index
 - [ ] append cards to DOM
