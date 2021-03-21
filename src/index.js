@@ -14,6 +14,7 @@ function loadDecks() {
       const deckId = parseInt(deck.id)
       const newDeck = new Deck(deckId, subject)
       const newDeckCards = deck.attributes.cards
+      newDeck.renderDeck()
       createCards(newDeckCards)
     }
   })
