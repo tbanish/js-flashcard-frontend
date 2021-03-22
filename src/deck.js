@@ -7,11 +7,16 @@ class Deck {
 
   renderDeck() {
     const deckContainer = document.querySelector(".deck-container")
+    const select = document.querySelector("select")
     const div = document.createElement("div")
     const subjectPTag = document.createElement("p")
     const cardContainer = document.createElement("div")
     const cardList = document.createElement("ol")
+    const option = document.createElement("option")
+    debugger
 
+    option.innerText = `${this.subject}`
+    option.id = `opt-${this.id}`
     div.id = `${this.id}`
     div.classList.add("deck-div")
     subjectPTag.innerHTML = `${this.subject}`
@@ -24,6 +29,7 @@ class Deck {
     deckContainer.appendChild(div)
     div.appendChild(cardContainer)
     cardContainer.appendChild(cardList)
+    select.appendChild(option)
   }
 }
 
