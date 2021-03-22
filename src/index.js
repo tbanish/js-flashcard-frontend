@@ -35,6 +35,7 @@ function createCards(newDeckCards) {
 }
 
 function renderOrRemoveCards(e) {
+
   const deck = Deck.all.find(deck => deck.subject === e.target.innerText)
   const cards = Card.all.filter(card => card.deckId === deck.id)
   const ol = document.getElementById(`${deck.subject} card list`)
@@ -110,6 +111,7 @@ function renderEditDeckForm(e) {
 function removeDeckEditDeleteButtons(e) {
   const editDeckButton = document.getElementById(`${e.target.innerText}-edit-button`)
   const deleteDeckButton = document.getElementById(`${e.target.innerText}-delete-button`)
+
   editDeckButton.remove()
   deleteDeckButton.remove()
 }
@@ -182,11 +184,35 @@ function postCard(question, answer, deck_id) {
 function editDeckFormHandler(e) {
   e.preventDefault()
   const subject = e.target.id.split("-")[0]
-  const inputValue = document.querySelector(`input#${subject}-subject-input`).value
-  patchDeck(inputValue)
+  const deck = Deck.all.find(deck => deck.subject === subject)
+  const inputValue = document.getElementById(`${subject}-subject-input`).value
+  patchDeck(deck, inputValue)
   document.getElementById(`${subject}-edit-form`).remove()
 }
 
-function patchDeck(subject) {
-  console.log(subject)
+function patchDeck(deck, subject) {
+  let bodyData = {subject}
+
+  fetch(decksEndpoint+`/${deck.id}`, {
+    method: "PATCH",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(bodyData)
+  })
+  .then(resp => resp.json())
+  .then(updatedDeck => {
+    const deck = Deck.all.find(deck => deck.id === updatedDeck.id)
+    const cardContainer = document.getElementById(`${deck.subject} cards`)
+    document.getElementById(`${deck.subject}-edit-button`).remove()
+    document.getElementById(`${deck.subject}-delete-button`).remove()
+    document.getElementById(`${deck.subject} card list`).remove()
+
+    deck.subject = updatedDeck.subject
+    cardContainer.id = `${deck.subject} cards`
+
+    document.getElementById(deck.id).children[0].innerText = deck.subject
+    document.querySelector(`option#opt-${deck.id}`).innerText = deck.subject
+    const ol = document.createElement("ol")
+    ol.classList.add("card-list")
+    cardContainer.appendChild(ol)
+  })
 }
