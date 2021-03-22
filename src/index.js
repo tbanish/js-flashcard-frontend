@@ -3,6 +3,8 @@ const cardsEndpoint = "http://localhost:3000/api/v1/cards"
 
 document.addEventListener('DOMContentLoaded', () => {
   const newDeckForm = document.getElementById("new-deck-form")
+  const newCardForm = document.getElementById("new-card-form")
+  newCardForm.addEventListener("submit", (e) => newCardFormHandler(e))
   newDeckForm.addEventListener("submit", (e) => newDeckFormHandler(e))
   loadDecks();
 })
@@ -52,4 +54,13 @@ function postDeck(subject) {
     const newDeck = new Deck(deck.id, deck.subject)
     newDeck.renderDeck()
   })
+}
+
+function newCardFormHandler(e) {
+  e.preventDefault()
+  const question = document.querySelector('[name="question"]').value
+  const answer = document.querySelector('[name="answer"]').value
+  const deckSubject = document.querySelector("select").value
+  const deck = Deck.all.find(deck => deck.subject === deckSubject)
+  postCard(question, answer, deck.id)
 }
