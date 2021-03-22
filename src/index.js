@@ -74,7 +74,14 @@ function renderEditDeleteDeckButtons(e) {
   e.target.parentElement.appendChild(editDeckButton)
   e.target.parentElement.appendChild(deleteDeckButton)
 
-  editDeckButton.addEventListener("click", (e) => renderEditDeckForm(e))
+  editDeckButton.addEventListener("click", (e) => {
+    const subject = e.target.id.split("-")[0]
+    if (document.getElementById(`${subject}-edit-form`) === null) {
+      renderEditDeckForm(e)
+    } else {
+      document.getElementById(`${subject}-edit-form`).remove()
+    }
+  })
 }
 
 function renderEditDeckForm(e) {
