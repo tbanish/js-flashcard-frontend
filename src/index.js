@@ -55,6 +55,9 @@ function renderOrRemoveCards(e) {
     if (olCollection.length > 0) {
       olCollection[0].remove()
     }
+    if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
+      document.getElementById(`${e.target.innerText}-edit-form`).remove()
+    }
     removeDeckEditDeleteButtons(e)
   }
 }
