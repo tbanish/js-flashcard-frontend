@@ -103,6 +103,8 @@ function renderEditDeckForm(e) {
   editForm.appendChild(subjectInput)
   editForm.appendChild(submitButton)
   editForm.appendChild(closeButton)
+
+  editForm.addEventListener("submit", (e) => editDeckFormHandler(e))
 }
 
 function removeDeckEditDeleteButtons(e) {
@@ -175,4 +177,16 @@ function postCard(question, answer, deck_id) {
     document.querySelector('[name="answer"]').value = ""
     document.querySelector("select").value = "default-option"
   })
+}
+
+function editDeckFormHandler(e) {
+  e.preventDefault()
+  const subject = e.target.id.split("-")[0]
+  const inputValue = document.querySelector(`input#${subject}-subject-input`).value
+  patchDeck(inputValue)
+  document.getElementById(`${subject}-edit-form`).remove()
+}
+
+function patchDeck(subject) {
+  console.log(subject)
 }
