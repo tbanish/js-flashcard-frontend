@@ -31,7 +31,24 @@ function createCards(newDeckCards) {
     const answer = card.answer
     const deckId = card.deck_id
     const newCard = new Card(id, question, answer, deckId)
-    newCard.renderCard()
+  }
+}
+
+function renderOrRemoveCards(e) {
+  const deck = Deck.all.find(deck => deck.subject === e.target.innerText)
+  const cards = Card.all.filter(card => card.deckId === deck.id)
+  const ol = document.getElementById(`${deck.subject} card list`)
+
+  if (ol === null || ol.children.length === 0) {
+    cards.forEach(card => card.renderCard())
+  } else {
+    const olCollection = document.getElementById(`${deck.subject} card list`).children
+    for (const li of olCollection) {
+      li.remove()
+    }
+    if (olCollection.length > 0) {
+      olCollection[0].remove()
+    }
   }
 }
 
