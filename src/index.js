@@ -41,5 +41,15 @@ function newDeckFormHandler(e) {
 }
 
 function postDeck(subject) {
-  console.log(subject)
+  let bodyData = {subject}
+  fetch(decksEndpoint, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(bodyData)
+  })
+  .then(resp => resp.json())
+  .then(deck => {
+    const newDeck = new Deck(deck.id, deck.subject)
+    newDeck.renderDeck()
+  })
 }
