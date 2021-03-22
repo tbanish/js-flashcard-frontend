@@ -35,7 +35,6 @@ function createCards(newDeckCards) {
 }
 
 function renderOrRemoveCards(e) {
-
   const deck = Deck.all.find(deck => deck.subject === e.target.innerText)
   const cards = Card.all.filter(card => card.deckId === deck.id)
   const ol = document.getElementById(`${deck.subject} card list`)
@@ -124,12 +123,16 @@ function removeDeckEditDeleteButtons(e) {
 }
 
 function renderOrRemoveAnswer(e) {
-  if (e.target.children.length === 0) {
+  if (e.target.children.length === 0 && e.target.tagName === "LI") {
     const cardId = parseInt(e.target.id.split(" ")[1])
     const card = Card.all.find(card => card.id === cardId)
     const answer = document.createElement("p")
+
     answer.innerText = `${card.answer}`
+    answer.id = `answer${cardId}`
     e.target.appendChild(answer)
+  } else if (e.target.tagName === "P") {
+    e.target.remove()
   } else {
     e.target.childNodes[1].remove()
   }
