@@ -12,8 +12,8 @@
 - [x] append cards to DOM
 
 ### Sprint 2: New Forms / Fetch POST Requests
-- [ ] build new deck form
-- [ ] build add card form
+- [x] build new deck form
+- [x] build add card form
 - [ ] set up AJAX POST fetch request to decks index
 - [ ] create new deck JS object
 - [ ] display new deck to DOM
