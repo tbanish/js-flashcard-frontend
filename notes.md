@@ -14,12 +14,12 @@
 ### Sprint 2: New Forms / Fetch POST Requests
 - [x] build new deck form
 - [x] build add card form
-- [ ] set up AJAX POST fetch request to decks index
-- [ ] create new deck JS object
-- [ ] display new deck to DOM
-- [ ] set up AJAX POST fetch request to cards index
-- [ ] create new card JS object
-- [ ] display new card to DOM
+- [x] set up AJAX POST fetch request to decks index
+- [x] create new deck JS object
+- [x] display new deck to DOM
+- [x] set up AJAX POST fetch request to cards index
+- [x] create new card JS object
+- [x] display new card to DOM
 
 ### Sprint 3: Edit Forms / Fetch PATCH Requests
 - [ ] build edit deck form
