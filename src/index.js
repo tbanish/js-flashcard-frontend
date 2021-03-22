@@ -69,6 +69,37 @@ function renderEditDeleteDeckButtons(e) {
 
   e.target.parentElement.appendChild(editDeckButton)
   e.target.parentElement.appendChild(deleteDeckButton)
+
+  editDeckButton.addEventListener("click", (e) => renderEditDeckForm(e))
+}
+
+function renderEditDeckForm(e) {
+  const editForm = document.createElement("FORM")
+  const subjectInput = document.createElement("INPUT")
+  const subjectInputLabel = document.createElement("LABEL")
+  const submitButton = document.createElement("button")
+  const closeButton = document.createElement("button")
+  const deckDiv = e.target.parentElement
+  const subject = e.target.id.split("-")[0]
+  const header = document.createElement("h3")
+
+  editForm.id = `${subject}-edit-form`
+  subjectInput.id = `${subject}-subject-input`
+  subjectInput.value = `${subject}`
+  subjectInputLabel.setAttribute("for", `${subject}-subject-input`)
+  subjectInputLabel.innerText = "Subject: "
+  submitButton.id = `${subject}-submit-button`
+  submitButton.innerText = "submit"
+  closeButton.id = `${subject}-close-button`
+  closeButton.innerText = "close"
+  header.innerText = "Edit Deck"
+
+  deckDiv.appendChild(editForm)
+  editForm.appendChild(header)
+  editForm.appendChild(subjectInputLabel)
+  editForm.appendChild(subjectInput)
+  editForm.appendChild(submitButton)
+  editForm.appendChild(closeButton)
 }
 
 function removeDeckEditDeleteButtons(e) {
