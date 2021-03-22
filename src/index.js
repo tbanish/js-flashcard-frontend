@@ -52,6 +52,7 @@ function renderOrRemoveCards(e) {
   }
 }
 
+// FORM HANDLERS AND POST & PATCH REQUESTS
 function newDeckFormHandler(e) {
   e.preventDefault()
   const subject = document.querySelector('[name="subject"]').value
