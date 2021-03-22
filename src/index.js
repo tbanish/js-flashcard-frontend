@@ -64,3 +64,25 @@ function newCardFormHandler(e) {
   const deck = Deck.all.find(deck => deck.subject === deckSubject)
   postCard(question, answer, deck.id)
 }
+
+function postCard(question, answer, deck_id) {
+  let bodyData = {question, answer, deck_id}
+  fetch(cardsEndpoint, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(bodyData)
+  })
+  .then(resp => resp.json())
+  .then(card => {
+    const id = card.id
+    const question = card.question
+    const answer = card.answer
+    const deckId = card.deck_id
+    const newCard = new Card(id, question, answer, deckId)
+    newCard.renderCard()
+
+    document.querySelector('[name="question"]').value = ""
+    document.querySelector('[name="answer"]').value = ""
+    document.querySelector("select").value = "default-option"
+  })
+}
