@@ -14,6 +14,7 @@ class Deck {
     const cardList = document.createElement("ol")
     const option = document.createElement("option")
 
+    option.value = `${this.subject}`
     option.innerText = `${this.subject}`
     option.id = `opt-${this.id}`
     div.id = `${this.id}`
