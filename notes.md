@@ -22,11 +22,11 @@
 - [x] display new card to DOM
 
 ### Sprint 3: Edit Forms / Fetch PATCH Requests
-- [ ] build edit deck form
+- [x] build edit deck form
 - [ ] build edit card form
-- [ ] set up AJAX PATCH fetch request to deck show
-- [ ] update deck JS object
-- [ ] display updated deck to DOM
+- [x] set up AJAX PATCH fetch request to deck show
+- [x] update deck JS object
+- [x] display updated deck to DOM
 - [ ] set up AJAX PATCH fetch request to cards show
 - [ ] update card JS object
 - [ ] display updated card to DOM
