@@ -55,6 +55,7 @@ function renderOrRemoveCards(e) {
     if (olCollection.length > 0) {
       olCollection[0].remove()
     }
+    removeDeckEditDeleteButtons(e)
   }
 }
 
@@ -68,6 +69,13 @@ function renderEditDeleteDeckButtons(e) {
 
   e.target.parentElement.appendChild(editDeckButton)
   e.target.parentElement.appendChild(deleteDeckButton)
+}
+
+function removeDeckEditDeleteButtons(e) {
+  const editDeckButton = document.getElementById(`${e.target.innerText}-edit-button`)
+  const deleteDeckButton = document.getElementById(`${e.target.innerText}-delete-button`)
+  editDeckButton.remove()
+  deleteDeckButton.remove()
 }
 
 function renderOrRemoveAnswer(e) {
