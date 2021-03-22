@@ -39,11 +39,11 @@ function renderOrRemoveCards(e) {
   const cards = Card.all.filter(card => card.deckId === deck.id)
   const ol = document.getElementById(`${deck.subject} card list`)
 
-
   if (ol === null || ol.children.length === 0) {
     cards.forEach(card => card.renderCard())
-    const liCollection = document.querySelectorAll("li")
+    renderEditDeleteDeckButtons(e)
 
+    const liCollection = document.querySelectorAll("li")
     liCollection.forEach(li => {
       li.addEventListener("click", (e) => renderOrRemoveAnswer(e))
     })
@@ -56,6 +56,18 @@ function renderOrRemoveCards(e) {
       olCollection[0].remove()
     }
   }
+}
+
+function renderEditDeleteDeckButtons(e) {
+  const editDeckButton = document.createElement("button")
+  const deleteDeckButton = document.createElement("button")
+  editDeckButton.innerText = "edit deck"
+  deleteDeckButton.innerText = "delete deck"
+  editDeckButton.id = `${e.target.innerText}-edit-button`
+  deleteDeckButton.id = `${e.target.innerText}-delete-button`
+
+  e.target.parentElement.appendChild(editDeckButton)
+  e.target.parentElement.appendChild(deleteDeckButton)
 }
 
 function renderOrRemoveAnswer(e) {
