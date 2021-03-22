@@ -39,8 +39,14 @@ function renderOrRemoveCards(e) {
   const cards = Card.all.filter(card => card.deckId === deck.id)
   const ol = document.getElementById(`${deck.subject} card list`)
 
+
   if (ol === null || ol.children.length === 0) {
     cards.forEach(card => card.renderCard())
+    const liCollection = document.querySelectorAll("li")
+
+    liCollection.forEach(li => {
+      li.addEventListener("click", (e) => renderOrRemoveAnswer(e))
+    })
   } else {
     const olCollection = document.getElementById(`${deck.subject} card list`).children
     for (const li of olCollection) {
@@ -49,6 +55,18 @@ function renderOrRemoveCards(e) {
     if (olCollection.length > 0) {
       olCollection[0].remove()
     }
+  }
+}
+
+function renderOrRemoveAnswer(e) {
+  if (e.target.children.length === 0) {
+    const cardId = parseInt(e.target.id.split(" ")[1])
+    const card = Card.all.find(card => card.id === cardId)
+    const answer = document.createElement("p")
+    answer.innerText = `${card.answer}`
+    e.target.appendChild(answer)
+  } else {
+    e.target.childNodes[1].remove()
   }
 }
 
