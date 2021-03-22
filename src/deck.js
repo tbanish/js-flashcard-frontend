@@ -13,7 +13,6 @@ class Deck {
     const cardContainer = document.createElement("div")
     const cardList = document.createElement("ol")
     const option = document.createElement("option")
-    debugger
 
     option.innerText = `${this.subject}`
     option.id = `opt-${this.id}`
