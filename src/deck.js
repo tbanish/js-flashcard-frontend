@@ -30,6 +30,7 @@ class Deck {
     div.appendChild(cardContainer)
     cardContainer.appendChild(cardList)
     select.appendChild(option)
+    subjectPTag.addEventListener("click", (e) => renderOrRemoveCards(e))
   }
 }
 
