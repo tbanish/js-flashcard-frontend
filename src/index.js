@@ -130,11 +130,27 @@ function renderOrRemoveAnswer(e) {
     answer.innerText = `${card.answer}`
     answer.id = `answer${cardId}`
     e.target.appendChild(answer)
+
+    renderEditDeleteCardButtons(e)
   } else if (e.target.tagName === "P") {
     e.target.remove()
   } else {
     e.target.childNodes[1].remove()
+    document.getElementById(`${e.target.id}-edit-button`).remove()
+    document.getElementById(`${e.target.id}-delete-button`).remove()
   }
+}
+
+function renderEditDeleteCardButtons(e) {
+  const editCardButton = document.createElement("button")
+  const deleteCardButton = document.createElement("button")
+  editCardButton.innerText = "edit card"
+  deleteCardButton.innerText = "delete card"
+  editCardButton.id = `${e.target.id}-edit-button`
+  deleteCardButton.id = `${e.target.id}-delete-button`
+
+  e.target.appendChild(editCardButton)
+  e.target.appendChild(deleteCardButton)
 }
 
 // FORM HANDLERS AND POST & PATCH REQUESTS
