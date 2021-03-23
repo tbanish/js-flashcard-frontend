@@ -23,7 +23,7 @@
 
 ### Sprint 3: Edit Forms / Fetch PATCH Requests
 - [x] build edit deck form
-- [ ] build edit card form
+- [x] build edit card form
 - [x] set up AJAX PATCH fetch request to deck show
 - [x] update deck JS object
 - [x] display updated deck to DOM
