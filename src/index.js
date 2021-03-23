@@ -89,6 +89,12 @@ function renderEditDeleteDeckButtons(e) {
       document.getElementById(`${subject}-edit-form`).remove()
     }
   })
+
+  deleteDeckButton.addEventListener("click", (e) => {
+    const subject = e.target.id.split("-")[0]
+    const deck = Deck.all.find(deck => deck.subject === subject)
+    deleteDeck(deck)
+  })
 }
 
 function renderEditDeckForm(e) {
@@ -335,4 +341,23 @@ function patchCard(card, question, answer) {
     document.getElementById(`answer ${updatedCard.id}`).innerText = updatedCard.answer
     document.getElementById(`Card ${updatedCard.id} question-edit-form`).remove()
   })
+}
+
+function deleteDeck(deck) {
+  fetch(decksEndpoint+`/${deck.id}`, {
+    method: "DELETE"
+  })
+  const deckId = deck.id
+  const deleteDeck = Deck.all.find(deck => deck.id === deckId)
+  const index = Deck.all.indexOf(deleteDeck)
+  const selectTag = document.querySelector("select")
+
+  Deck.all.splice(index, 1)
+  document.getElementById(deckId).remove()
+
+  for (const option of selectTag) {
+    if (option.innerText === deck.subject) {
+      option.remove()
+    }
+  }
 }
