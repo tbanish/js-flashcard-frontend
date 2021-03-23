@@ -11,11 +11,15 @@ class Card {
     const li = document.createElement("li")
     const deck = Deck.all.find(deck => deck.id === this.deckId).subject
     const ol = document.getElementById(`${deck}`+" cards").children[0]
-    
+    const question = document.createElement("p")
+
     li.id = `Card ${this.id}`
-    li.innerText = this.question
+    question.innerText = this.question
+    question.id = `Card ${this.id} question`
+    question.classList.add("card-questions")
     ol.id = `${deck} card list`
     ol.appendChild(li)
+    li.appendChild(question)
   }
 }
 
