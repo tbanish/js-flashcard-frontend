@@ -127,8 +127,8 @@ function renderOrRemoveAnswer(e) {
   let cardDiv = document.createElement("div")
   cardDiv.id = `Card ${cardId} div`
   e.target.appendChild(cardDiv)
-
-  if (document.getElementById(`Card ${cardId} div`).childElementCount === 0 && e.target.tagName === "LI") {
+  
+  if (document.getElementById(`Card ${cardId} div`).childElementCount === 0 && e.target.tagName === "LI" && document.getElementById(`Card ${cardId}-edit-form`) === null) {
     const answer = document.createElement("p")
     answer.innerText = `${card.answer}`
     answer.id = `answer ${cardId}`
