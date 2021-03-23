@@ -215,7 +215,7 @@ function renderEditCardForm(e) {
 }
 
 function removeEditCardForm(cardId){
-  document.getElementById(`Card ${cardId}-edit-form`).remove()
+  document.getElementById(`Card ${cardId} question-edit-form`).remove()
 }
 
 // FORM HANDLERS AND POST & PATCH REQUESTS
