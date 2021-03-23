@@ -129,10 +129,9 @@ function renderOrRemoveAnswer(e) {
   const card = Card.all.find(card => card.id === cardId)
   let cardDiv = document.createElement("div")
   cardDiv.id = `Card ${cardId} div`
-  e.target.appendChild(cardDiv)
+  e.target.parentElement.appendChild(cardDiv)
 
   if (document.getElementById(`Card ${cardId} div`).childElementCount === 0 && e.target.id === `Card ${cardId} question` && document.getElementById(`Card ${cardId}-edit-form`) === null) {
-    debugger
     const answer = document.createElement("p")
     answer.innerText = `${card.answer}`
     answer.id = `answer ${cardId}`
@@ -140,7 +139,9 @@ function renderOrRemoveAnswer(e) {
     renderEditDeleteCardButtons(e, cardDiv)
   } else if (e.target.id === `answer ${cardId}`) {
     document.getElementById(`Card ${cardId} div`).remove()
+    document.getElementById(`Card ${cardId} div`).remove()
   } else if (document.getElementById(`Card ${cardId} div`).childElementCount > 0 && e.target.id === `Card ${cardId} question`) {
+    document.getElementById(`Card ${cardId} div`).remove()
     document.getElementById(`Card ${cardId} div`).remove()
   }
 }
@@ -259,7 +260,6 @@ function postCard(question, answer, deck_id) {
     const answer = card.answer
     const deckId = card.deck_id
     const newCard = new Card(id, question, answer, deckId)
-    newCard.renderCard()
 
     document.querySelector('[name="question"]').value = ""
     document.querySelector('[name="answer"]').value = ""
@@ -307,11 +307,26 @@ function editCardFormHandler(e) {
   e.preventDefault()
   const cardId = parseInt(e.target.id.split("-")[0].split(" ")[1])
   const card = Card.all.find(card => card.id === cardId)
-  const question = document.getElementById(`Card ${cardId}-question-input`).value
-  const answer = document.getElementById(`Card ${cardId}-answer-input`).value
+  const question = document.getElementById(`Card ${cardId} question-question-input`).value
+  const answer = document.getElementById(`Card ${cardId} question-answer-input`).value
   patchCard(card, question, answer)
 }
 
 function patchCard(card, question, answer) {
-  console.log("here")
+  let bodyData = {question, answer}
+
+  fetch(cardsEndpoint+`/${card.id}`, {
+    method: "PATCH",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(bodyData)
+  })
+  .then(resp => resp.json())
+  .then(updatedCard => {
+    const oldCard = Card.all.find(card => card.id === updatedCard.id)
+    oldCard.question = updatedCard.question
+    oldCard.answer = updatedCard.answer
+    document.getElementById(`Card ${updatedCard.id} question`).innerText = updatedCard.question
+    document.getElementById(`answer ${updatedCard.id}`).innerText = updatedCard.answer
+    document.getElementById(`Card ${updatedCard.id} question-edit-form`).remove()
+  })
 }
