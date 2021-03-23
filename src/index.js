@@ -39,7 +39,7 @@ function renderOrRemoveCards(e) {
   const cards = Card.all.filter(card => card.deckId === deck.id)
   const ol = document.getElementById(`${deck.subject} card list`)
 
-  if (ol === null || ol.children.length === 0) {
+  if (document.getElementById(`${deck.subject}-edit-button`) === null) {
     cards.forEach(card => card.renderCard())
     renderEditDeleteDeckButtons(e)
 
@@ -50,6 +50,9 @@ function renderOrRemoveCards(e) {
         renderOrRemoveAnswer(e)
       })
     })
+  } else if (ol === null) {
+    document.getElementById(`${deck.subject}-edit-button`).remove()
+    document.getElementById(`${deck.subject}-delete-button`).remove()
   } else {
     ol.remove()
     const newOl = document.createElement("ol")
