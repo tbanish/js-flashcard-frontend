@@ -127,7 +127,7 @@ function renderOrRemoveAnswer(e) {
   let cardDiv = document.createElement("div")
   cardDiv.id = `Card ${cardId} div`
   e.target.appendChild(cardDiv)
-  
+
   if (document.getElementById(`Card ${cardId} div`).childElementCount === 0 && e.target.tagName === "LI" && document.getElementById(`Card ${cardId}-edit-form`) === null) {
     const answer = document.createElement("p")
     answer.innerText = `${card.answer}`
@@ -200,6 +200,10 @@ function renderEditCardForm(e) {
   editCardForm.appendChild(answerInput)
   editCardForm.appendChild(submitButton)
   editCardForm.appendChild(closeButton)
+
+  editCardForm.addEventListener("submit", (e) => {
+    editCardFormHandler(e)
+  })
 }
 
 function removeEditCardForm(cardId){
@@ -293,4 +297,16 @@ function patchDeck(deck, subject) {
     ol.classList.add("card-list")
     cardContainer.appendChild(ol)
   })
+}
+
+function editCardFormHandler(e) {
+  const cardId = parseInt(e.target.id.split("-")[0].split(" ")[1])
+  const card = Card.all.find(card => card.id === cardId)
+  const question = document.getElementById(`Card ${cardId}-question-input`).value
+  const answer = document.getElementById(`Card ${cardId}-answer-input`).value
+  patchCard(card, question, answer)
+}
+
+function patchCard(card, question, answer) {
+  console.log("here")
 }
