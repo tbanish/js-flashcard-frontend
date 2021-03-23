@@ -53,6 +53,9 @@ function renderOrRemoveCards(e) {
   } else if (ol === null) {
     document.getElementById(`${deck.subject}-edit-button`).remove()
     document.getElementById(`${deck.subject}-delete-button`).remove()
+    if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
+      document.getElementById(`${e.target.innerText}-edit-form`).remove()
+    }
   } else {
     ol.remove()
     const newOl = document.createElement("ol")
