@@ -27,9 +27,9 @@
 - [x] set up AJAX PATCH fetch request to deck show
 - [x] update deck JS object
 - [x] display updated deck to DOM
-- [ ] set up AJAX PATCH fetch request to cards show
-- [ ] update card JS object
-- [ ] display updated card to DOM
+- [x] set up AJAX PATCH fetch request to cards show
+- [x] update card JS object
+- [x] display updated card to DOM
 
 ### Sprint 4: Fetch DELETE Requests
 - [ ] set up AJAX DELETE fetch request to deck show
