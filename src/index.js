@@ -122,22 +122,25 @@ function removeDeckEditDeleteButtons(e) {
 }
 
 function renderOrRemoveAnswer(e) {
+  const cardId = parseInt(e.target.id.split(" ")[1])
+  const card = Card.all.find(card => card.id === cardId)
+
   if (e.target.children.length === 0 && e.target.tagName === "LI") {
-    const cardId = parseInt(e.target.id.split(" ")[1])
-    const card = Card.all.find(card => card.id === cardId)
     const answer = document.createElement("p")
 
     answer.innerText = `${card.answer}`
-    answer.id = `answer${cardId}`
+    answer.id = `answer ${cardId}`
     e.target.appendChild(answer)
 
     renderEditDeleteCardButtons(e)
   } else if (e.target.tagName === "P") {
     e.target.remove()
-  } else {
+    document.getElementById(`Card ${e.target.id}-edit-button`).remove()
+    document.getElementById(`Card ${e.target.id}-delete-button`).remove()
+  } else if (e.target.children.length > 0 && e.target.tagName === "LI") {
     e.target.childNodes[1].remove()
-    document.getElementById(`${e.target.id}-edit-button`).remove()
-    document.getElementById(`${e.target.id}-delete-button`).remove()
+    document.getElementById(`Card ${cardId}-edit-button`).remove()
+    document.getElementById(`Card ${cardId}-delete-button`).remove()
   }
 }
 
@@ -151,6 +154,48 @@ function renderEditDeleteCardButtons(e) {
 
   e.target.appendChild(editCardButton)
   e.target.appendChild(deleteCardButton)
+
+  editCardButton.addEventListener("click", (e) => renderEditCardForm(e))
+}
+
+function renderEditCardForm(e) {
+  e.preventDefault()
+
+  const editCardForm = document.createElement("FORM")
+  const questionInputLabel = document.createElement("LABEL")
+  const questionInput = document.createElement("INPUT")
+  const answerInputLabel = document.createElement("LABEL")
+  const answerInput = document.createElement("INPUT")
+  const submitButton = document.createElement("button")
+  const header = document.createElement("h3")
+  const closeButton = document.createElement("button")
+  const cardIdLabel = e.target.id.split("-")[0]
+  const cardId = parseInt(e.target.id.split("-")[0].split(" ")[1])
+  const card = Card.all.find(card => card.id === cardId)
+
+  editCardForm.id = `${cardIdLabel}-edit-form`
+  questionInput.id = `${cardIdLabel}-question-input`
+  questionInput.value = `${card.question}`
+  questionInputLabel.setAttribute("for", `${cardIdLabel}-question-input`)
+  questionInputLabel.innerText = "Question: "
+  answerInput.id = `${cardIdLabel}-answer-input`
+  answerInput.value = `${card.answer}`
+  answerInputLabel.setAttribute("for", `${cardIdLabel}-answer-input`)
+  answerInputLabel.innerText = "Answer: "
+  submitButton.id = `${cardIdLabel}-submit-button`
+  submitButton.innerText = "submit"
+  closeButton.id = `${cardIdLabel}-close-button`
+  closeButton.innerText = "close"
+  header.innerText = "Edit Card"
+
+  e.target.parentElement.appendChild(editCardForm)
+  editCardForm.appendChild(header)
+  editCardForm.appendChild(questionInputLabel)
+  editCardForm.appendChild(questionInput)
+  editCardForm.appendChild(answerInputLabel)
+  editCardForm.appendChild(answerInput)
+  editCardForm.appendChild(submitButton)
+  editCardForm.appendChild(closeButton)
 }
 
 // FORM HANDLERS AND POST & PATCH REQUESTS
