@@ -159,7 +159,8 @@ function renderEditDeleteCardButtons(e) {
     if (document.getElementById(`${e.target.id.split("-")[0]}-edit-form`) === null) {
       renderEditCardForm(e)
     } else {
-      removeEditCardForm(e)
+      const cardId = parseInt(e.target.id.split("-")[0].split(" ")[1])
+      removeEditCardForm(cardId)
     }
   })
 }
@@ -204,8 +205,8 @@ function renderEditCardForm(e) {
   editCardForm.appendChild(closeButton)
 }
 
-function removeEditCardForm(e){
-  document.getElementById(`${e.target.id.split("-")[0]}-edit-form`).remove()
+function removeEditCardForm(cardId){
+  document.getElementById(`Card ${cardId}-edit-form`).remove()
 }
 
 // FORM HANDLERS AND POST & PATCH REQUESTS
