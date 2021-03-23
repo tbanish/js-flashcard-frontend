@@ -48,13 +48,12 @@ function renderOrRemoveCards(e) {
       li.addEventListener("click", (e) => renderOrRemoveAnswer(e))
     })
   } else {
-    const olCollection = document.getElementById(`${deck.subject} card list`).children
-    for (const li of olCollection) {
-      li.remove()
-    }
-    if (olCollection.length > 0) {
-      olCollection[0].remove()
-    }
+    ol.remove()
+    const newOl = document.createElement("ol")
+    const cardContainer = document.getElementById(`${e.target.innerText} cards`)
+    newOl.classList.add("card-list")
+    cardContainer.appendChild(newOl)
+
     if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
       document.getElementById(`${e.target.innerText}-edit-form`).remove()
     }
