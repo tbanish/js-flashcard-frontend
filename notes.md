@@ -38,4 +38,4 @@
 - [x] build method to destroy card JS object
 
 ## Sprint 5: Error Handling
-- [ ] write code to handle server errors
+- [x] write code to handle server errors
