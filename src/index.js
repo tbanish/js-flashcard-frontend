@@ -263,11 +263,16 @@ function postDeck(subject) {
 
 function newCardFormHandler(e) {
   e.preventDefault()
-  const question = document.querySelector('[name="question"]').value
-  const answer = document.querySelector('[name="answer"]').value
-  const deckSubject = document.querySelector("select").value
-  const deck = Deck.all.find(deck => deck.subject === deckSubject)
-  postCard(question, answer, deck.id)
+  if (document.querySelector("select").value === "default-option") {
+    const message = "Error: Must select a deck."
+    alert(message)
+  } else {
+    const question = document.querySelector('[name="question"]').value
+    const answer = document.querySelector('[name="answer"]').value
+    const deckSubject = document.querySelector("select").value
+    const deck = Deck.all.find(deck => deck.subject === deckSubject)
+    postCard(question, answer, deck.id)
+  }
 }
 
 function postCard(question, answer, deck_id) {
