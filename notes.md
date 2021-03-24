@@ -36,3 +36,6 @@
 - [x] build method to destroy deck JS object
 - [x] set up AJAX DELETE fetch request to card show
 - [x] build method to destroy card JS object
+
+## Sprint 5: Error Handling
+- [ ] write code to handle server errors
