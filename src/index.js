@@ -44,17 +44,7 @@ function renderOrRemoveCards(e) {
   } else if (ol === null) {
     removeDeckContentsWithoutCards(deck, e)
   } else {
-    // removeDeckContentsWithCards(ol, e)
-    ol.remove()
-    const newOl = document.createElement("ol")
-    const cardContainer = document.getElementById(`${e.target.innerText} cards`)
-    newOl.classList.add("card-list")
-    cardContainer.appendChild(newOl)
-
-    if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
-      document.getElementById(`${e.target.innerText}-edit-form`).remove()
-    }
-    removeDeckEditDeleteButtons(e)
+    removeDeckContentsWithCards(ol, e)
   }
 }
 
@@ -74,6 +64,19 @@ function renderDeckCards(deck, cards, e) {
 function removeDeckContentsWithoutCards(deck, e) {
   document.getElementById(`${deck.subject}-edit-button`).remove()
   document.getElementById(`${deck.subject}-delete-button`).remove()
+  if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
+    document.getElementById(`${e.target.innerText}-edit-form`).remove()
+  }
+}
+
+function removeDeckContentsWithCards(ol, e) {
+  ol.remove()
+  const newOl = document.createElement("ol")
+  const cardContainer = document.getElementById(`${e.target.innerText} cards`)
+  newOl.classList.add("card-list")
+  cardContainer.appendChild(newOl)
+  removeDeckEditDeleteButtons(e)
+  
   if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
     document.getElementById(`${e.target.innerText}-edit-form`).remove()
   }
