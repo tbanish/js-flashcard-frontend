@@ -34,5 +34,5 @@
 ### Sprint 4: Fetch DELETE Requests
 - [x] set up AJAX DELETE fetch request to deck show
 - [x] build method to destroy deck JS object
-- [ ] set up AJAX DELETE fetch request to card show
-- [ ] build method to destroy card JS object
+- [x] set up AJAX DELETE fetch request to card show
+- [x] build method to destroy card JS object
