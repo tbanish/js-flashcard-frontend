@@ -42,12 +42,7 @@ function renderOrRemoveCards(e) {
   if (document.getElementById(`${deck.subject}-edit-button`) === null) {
     renderDeckCards(deck, cards, e)
   } else if (ol === null) {
-    // removeDeckContentsWithoutCards(deck, e)
-    document.getElementById(`${deck.subject}-edit-button`).remove()
-    document.getElementById(`${deck.subject}-delete-button`).remove()
-    if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
-      document.getElementById(`${e.target.innerText}-edit-form`).remove()
-    }
+    removeDeckContentsWithoutCards(deck, e)
   } else {
     // removeDeckContentsWithCards(ol, e)
     ol.remove()
@@ -74,6 +69,14 @@ function renderDeckCards(deck, cards, e) {
       renderOrRemoveAnswer(e)
     })
   })
+}
+
+function removeDeckContentsWithoutCards(deck, e) {
+  document.getElementById(`${deck.subject}-edit-button`).remove()
+  document.getElementById(`${deck.subject}-delete-button`).remove()
+  if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
+    document.getElementById(`${e.target.innerText}-edit-form`).remove()
+  }
 }
 
 function renderEditDeleteDeckButtons(e) {
