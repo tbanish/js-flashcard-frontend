@@ -250,8 +250,14 @@ function postDeck(subject) {
   })
   .then(resp => resp.json())
   .then(deck => {
-    const newDeck = new Deck(deck.id, deck.subject)
-    newDeck.renderDeck()
+    if (deck.errors === undefined) {
+      const newDeck = new Deck(deck.id, deck.subject)
+      newDeck.renderDeck()
+    } else {
+      deck.errors.forEach(error => {
+        alert(error)
+      })
+    }
   })
 }
 
@@ -273,15 +279,21 @@ function postCard(question, answer, deck_id) {
   })
   .then(resp => resp.json())
   .then(card => {
-    const id = card.id
-    const question = card.question
-    const answer = card.answer
-    const deckId = card.deck_id
-    const newCard = new Card(id, question, answer, deckId)
+    if (card.errors === undefined) {
+      const id = card.id
+      const question = card.question
+      const answer = card.answer
+      const deckId = card.deck_id
+      const newCard = new Card(id, question, answer, deckId)
 
-    document.querySelector('[name="question"]').value = ""
-    document.querySelector('[name="answer"]').value = ""
-    document.querySelector("select").value = "default-option"
+      document.querySelector('[name="question"]').value = ""
+      document.querySelector('[name="answer"]').value = ""
+      document.querySelector("select").value = "default-option"
+    } else {
+      card.errors.forEach(error => {
+        alert(error)
+      })
+    }
   })
 }
 
@@ -304,20 +316,27 @@ function patchDeck(deck, subject) {
   })
   .then(resp => resp.json())
   .then(updatedDeck => {
-    const deck = Deck.all.find(deck => deck.id === updatedDeck.id)
-    const cardContainer = document.getElementById(`${deck.subject} cards`)
-    document.getElementById(`${deck.subject}-edit-button`).remove()
-    document.getElementById(`${deck.subject}-delete-button`).remove()
-    document.getElementById(`${deck.subject} card list`).remove()
+    debugger
+    if (updatedDeck.errors === undefined) {
+      const deck = Deck.all.find(deck => deck.id === updatedDeck.id)
+      const cardContainer = document.getElementById(`${deck.subject} cards`)
+      document.getElementById(`${deck.subject}-edit-button`).remove()
+      document.getElementById(`${deck.subject}-delete-button`).remove()
+      document.getElementById(`${deck.subject} card list`).remove()
 
-    deck.subject = updatedDeck.subject
-    cardContainer.id = `${deck.subject} cards`
+      deck.subject = updatedDeck.subject
+      cardContainer.id = `${deck.subject} cards`
 
-    document.getElementById(deck.id).children[0].innerText = deck.subject
-    document.querySelector(`option#opt-${deck.id}`).innerText = deck.subject
-    const ol = document.createElement("ol")
-    ol.classList.add("card-list")
-    cardContainer.appendChild(ol)
+      document.getElementById(deck.id).children[0].innerText = deck.subject
+      document.querySelector(`option#opt-${deck.id}`).innerText = deck.subject
+      const ol = document.createElement("ol")
+      ol.classList.add("card-list")
+      cardContainer.appendChild(ol)
+    } else {
+      updatedDeck.errors.forEach(error => {
+        alert(error)
+      })
+    }
   })
 }
 
@@ -340,12 +359,18 @@ function patchCard(card, question, answer) {
   })
   .then(resp => resp.json())
   .then(updatedCard => {
-    const oldCard = Card.all.find(card => card.id === updatedCard.id)
-    oldCard.question = updatedCard.question
-    oldCard.answer = updatedCard.answer
-    document.getElementById(`Card ${updatedCard.id} question`).innerText = updatedCard.question
-    document.getElementById(`answer ${updatedCard.id}`).innerText = updatedCard.answer
-    document.getElementById(`Card ${updatedCard.id} question-edit-form`).remove()
+    if (updatedCard.errors === undefined) {
+      const oldCard = Card.all.find(card => card.id === updatedCard.id)
+      oldCard.question = updatedCard.question
+      oldCard.answer = updatedCard.answer
+      document.getElementById(`Card ${updatedCard.id} question`).innerText = updatedCard.question
+      document.getElementById(`answer ${updatedCard.id}`).innerText = updatedCard.answer
+      document.getElementById(`Card ${updatedCard.id} question-edit-form`).remove()
+    } else {
+      updatedCard.errors.forEach(error => {
+        alert(error)
+      })
+    }
   })
 }
 
