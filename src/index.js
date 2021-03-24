@@ -177,6 +177,12 @@ function renderEditDeleteCardButtons(e, cardDiv) {
       removeEditCardForm(cardId)
     }
   })
+
+  deleteCardButton.addEventListener("click", (e) => {
+    const cardId = parseInt(e.target.id.split(" ")[1])
+    const card = Card.all.find(card => card.id === cardId)
+    deleteCard(card)
+  })
 }
 
 function renderEditCardForm(e) {
@@ -360,4 +366,15 @@ function deleteDeck(deck) {
       option.remove()
     }
   }
+}
+
+function deleteCard(card) {
+  fetch(cardsEndpoint+`/${card.id}`, {
+    method: "DELETE"
+  })
+  const cardId = card.id
+  const deleteCard = Card.all.find(card => card.id === cardId)
+  const index = Card.all.indexOf(deleteCard)
+  Card.all.splice(index, 1)
+  document.getElementById(`Card ${card.id}`).remove()
 }
