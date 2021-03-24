@@ -40,23 +40,16 @@ function renderOrRemoveCards(e) {
   const ol = document.getElementById(`${deck.subject} card list`)
 
   if (document.getElementById(`${deck.subject}-edit-button`) === null) {
-    cards.forEach(card => card.renderCard())
-    renderEditDeleteDeckButtons(e)
-
-    const questionCollection = document.querySelectorAll(".card-questions")
-    questionCollection.forEach(question => {
-
-      question.addEventListener("click", (e) => {
-        renderOrRemoveAnswer(e)
-      })
-    })
+    renderDeckCards(deck, cards, e)
   } else if (ol === null) {
+    // removeDeckContentsWithoutCards(deck, e)
     document.getElementById(`${deck.subject}-edit-button`).remove()
     document.getElementById(`${deck.subject}-delete-button`).remove()
     if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
       document.getElementById(`${e.target.innerText}-edit-form`).remove()
     }
   } else {
+    // removeDeckContentsWithCards(ol, e)
     ol.remove()
     const newOl = document.createElement("ol")
     const cardContainer = document.getElementById(`${e.target.innerText} cards`)
@@ -68,6 +61,19 @@ function renderOrRemoveCards(e) {
     }
     removeDeckEditDeleteButtons(e)
   }
+}
+
+function renderDeckCards(deck, cards, e) {
+  cards.forEach(card => card.renderCard())
+  renderEditDeleteDeckButtons(e)
+
+  const questionCollection = document.querySelectorAll(".card-questions")
+  questionCollection.forEach(question => {
+
+    question.addEventListener("click", (e) => {
+      renderOrRemoveAnswer(e)
+    })
+  })
 }
 
 function renderEditDeleteDeckButtons(e) {
