@@ -39,6 +39,15 @@ function renderCards(deck) {
   cards.forEach(card => card.renderCard())
 }
 
+function renderEditDeckButton(deck) {
+  const li = document.getElementById(`deck-${deck.id}`)
+  const editDeckButton = document.createElement("button")
+
+  editDeckButton.id = `edit-deck-${deck.id}`
+  editDeckButton.innerText = "edit deck"
+  li.appendChild(editDeckButton)
+}
+
 function removeCards() {
   const cardList = document.getElementById("card-list")
   const cardListHeader = document.getElementById("card-list-header")
