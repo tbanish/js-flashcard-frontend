@@ -124,33 +124,6 @@ function removeAnswer() {
   document.querySelector(".card-answer").remove()
 }
 
-function renderEditDeleteDeckButtons(e) {
-  const editDeckButton = document.createElement("button")
-  const deleteDeckButton = document.createElement("button")
-  editDeckButton.innerText = "edit deck"
-  deleteDeckButton.innerText = "delete deck"
-  editDeckButton.id = `${e.target.innerText}-edit-button`
-  deleteDeckButton.id = `${e.target.innerText}-delete-button`
-
-  e.target.parentElement.appendChild(editDeckButton)
-  e.target.parentElement.appendChild(deleteDeckButton)
-
-  editDeckButton.addEventListener("click", (e) => {
-    const subject = e.target.id.split("-")[0]
-    if (document.getElementById(`${subject}-edit-form`) === null) {
-      renderEditDeckForm(e)
-    } else {
-      document.getElementById(`${subject}-edit-form`).remove()
-    }
-  })
-
-  deleteDeckButton.addEventListener("click", (e) => {
-    const subject = e.target.id.split("-")[0]
-    const deck = Deck.all.find(deck => deck.subject === subject)
-    deleteDeck(deck)
-  })
-}
-
 function renderEditDeckForm(e) {
   const editForm = document.createElement("FORM")
   const subjectInput = document.createElement("INPUT")
@@ -180,41 +153,6 @@ function renderEditDeckForm(e) {
   editForm.appendChild(closeButton)
 
   editForm.addEventListener("submit", (e) => editDeckFormHandler(e))
-}
-
-function removeDeckEditDeleteButtons(e) {
-  const editDeckButton = document.getElementById(`${e.target.innerText}-edit-button`)
-  const deleteDeckButton = document.getElementById(`${e.target.innerText}-delete-button`)
-
-  editDeckButton.remove()
-  deleteDeckButton.remove()
-}
-
-function renderEditDeleteCardButtons(e, cardDiv) {
-  const editCardButton = document.createElement("button")
-  const deleteCardButton = document.createElement("button")
-  editCardButton.innerText = "edit card"
-  deleteCardButton.innerText = "delete card"
-  editCardButton.id = `${e.target.id}-edit-button`
-  deleteCardButton.id = `${e.target.id}-delete-button`
-
-  cardDiv.appendChild(editCardButton)
-  cardDiv.appendChild(deleteCardButton)
-
-  editCardButton.addEventListener("click", (e) => {
-    if (document.getElementById(`${e.target.id.split("-")[0]}-edit-form`) === null) {
-      renderEditCardForm(e)
-    } else {
-      const cardId = parseInt(e.target.id.split("-")[0].split(" ")[1])
-      removeEditCardForm(cardId)
-    }
-  })
-
-  deleteCardButton.addEventListener("click", (e) => {
-    const cardId = parseInt(e.target.id.split(" ")[1])
-    const card = Card.all.find(card => card.id === cardId)
-    deleteCard(card)
-  })
 }
 
 function renderEditCardForm(e) {
