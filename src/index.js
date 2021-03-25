@@ -63,6 +63,10 @@ function removeEditDeckButton() {
   document.querySelector(".edit-deck-button").remove()
 }
 
+function removeDeleteDeckButton() {
+  document.querySelector(".delete-deck-button").remove()
+}
+
 function removeCards() {
   const cardList = document.getElementById("card-list")
   const cardListHeader = document.getElementById("card-list-header")
