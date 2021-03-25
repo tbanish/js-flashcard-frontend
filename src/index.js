@@ -34,32 +34,36 @@ function createCards(newDeckCards) {
   }
 }
 
-function renderOrRemoveCards(e) {
-  const deck = Deck.all.find(deck => deck.subject === e.target.innerText)
-  const cards = Card.all.filter(card => card.deckId === deck.id)
-  const ol = document.getElementById(`${deck.subject} card list`)
-
-  if (document.getElementById(`${deck.subject}-edit-button`) === null) {
-    renderDeckCards(deck, cards, e)
-  } else if (ol === null) {
-    removeDeckContentsWithoutCards(deck, e)
-  } else {
-    removeDeckContentsWithCards(ol, e)
-  }
+function renderCards(e) {
+  console.log(e)
 }
 
-function renderDeckCards(deck, cards, e) {
-  cards.forEach(card => card.renderCard())
-  renderEditDeleteDeckButtons(e)
-
-  const questionCollection = document.querySelectorAll(".card-questions")
-  questionCollection.forEach(question => {
-
-    question.addEventListener("click", (e) => {
-      renderOrRemoveAnswer(e)
-    })
-  })
-}
+// function renderOrRemoveCards(e) {
+//   const deck = Deck.all.find(deck => deck.subject === e.target.innerText)
+//   const cards = Card.all.filter(card => card.deckId === deck.id)
+//   const ol = document.getElementById(`${deck.subject} card list`)
+//
+//   if (document.getElementById(`${deck.subject}-edit-button`) === null) {
+//     renderDeckCards(deck, cards, e)
+//   } else if (ol === null) {
+//     removeDeckContentsWithoutCards(deck, e)
+//   } else {
+//     removeDeckContentsWithCards(ol, e)
+//   }
+// }
+//
+// function renderDeckCards(deck, cards, e) {
+//   cards.forEach(card => card.renderCard())
+//   renderEditDeleteDeckButtons(e)
+//
+//   const questionCollection = document.querySelectorAll(".card-questions")
+//   questionCollection.forEach(question => {
+//
+//     question.addEventListener("click", (e) => {
+//       renderOrRemoveAnswer(e)
+//     })
+//   })
+// }
 
 function removeDeckContentsWithoutCards(deck, e) {
   document.getElementById(`${deck.subject}-edit-button`).remove()
@@ -76,7 +80,7 @@ function removeDeckContentsWithCards(ol, e) {
   newOl.classList.add("card-list")
   cardContainer.appendChild(newOl)
   removeDeckEditDeleteButtons(e)
-  
+
   if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
     document.getElementById(`${e.target.innerText}-edit-form`).remove()
   }
