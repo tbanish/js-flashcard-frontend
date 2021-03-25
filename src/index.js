@@ -233,7 +233,8 @@ function postDeck(subject) {
 
 function newCardFormHandler(e) {
   e.preventDefault()
-  if (document.querySelector("select").value === "default-option") {
+
+  if (document.querySelector("select").value === "--select deck--") {
     const message = "Error: Must select a deck."
     alert(message)
   } else {
@@ -263,7 +264,7 @@ function postCard(question, answer, deck_id) {
 
       document.querySelector('[name="question"]').value = ""
       document.querySelector('[name="answer"]').value = ""
-      document.querySelector("select").value = "default-option"
+      document.querySelector("select").value = "--select deck--"
     } else {
       card.errors.forEach(error => {
         alert(error)
