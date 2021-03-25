@@ -26,11 +26,17 @@ class Card {
     li.appendChild(questionTag)
 
     questionTag.addEventListener("click", (e) => {
-      if (li.childElementCount === 1) {
+      if (document.querySelector(".card-answer") === null) {
         renderAnswer(this)
         renderEditCardButton(this)
+      } else if (this.id === parseInt(document.querySelector(".card-answer").id.split("-")[1])){
+        removeAnswer()
+        removeEditCardButton()
       } else {
         removeAnswer()
+        removeEditCardButton()
+        renderAnswer(this)
+        renderEditCardButton(this)
       }
     })
   }
