@@ -34,8 +34,9 @@ function createCards(newDeckCards) {
   }
 }
 
-function renderCards(e) {
-  console.log(e)
+function renderCards(deck) {
+  const cards = deck.cards()
+  cards.forEach(card => card.renderCard())
 }
 
 // function renderOrRemoveCards(e) {
