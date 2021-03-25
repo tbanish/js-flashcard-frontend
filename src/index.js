@@ -71,14 +71,6 @@ function renderDeleteCardButton(card) {
   li.appendChild(deleteCardButton)
 }
 
-function removeEditCardButton() {
-  document.querySelector(".edit-card-button").remove()
-}
-
-function removeDeleteCardButton() {
-  document.querySelector(".delete-card-button").remove()
-}
-
 function renderDeleteDeckButton(deck) {
   const li = document.getElementById(`deck-${deck.id}`)
   const deleteDeckButton = document.createElement("button")
@@ -87,6 +79,14 @@ function renderDeleteDeckButton(deck) {
   deleteDeckButton.classList.add("delete-deck-button")
   deleteDeckButton.innerText = "delete deck"
   li.appendChild(deleteDeckButton)
+}
+
+function removeEditCardButton() {
+  document.querySelector(".edit-card-button").remove()
+}
+
+function removeDeleteCardButton() {
+  document.querySelector(".delete-card-button").remove()
 }
 
 function removeEditDeckButton() {
