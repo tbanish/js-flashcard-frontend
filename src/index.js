@@ -47,6 +47,15 @@ function renderEditDeckButton(deck) {
   editDeckButton.classList.add("edit-deck-button")
   editDeckButton.innerText = "edit deck"
   li.appendChild(editDeckButton)
+
+  editDeckButton.addEventListener("click", () => {
+    if (document.getElementById("edit-form-container").childElementCount === 0) {
+      renderEditDeckForm(deck)
+    } else {
+      removeEditDeckForm()
+      renderEditDeckForm(deck)
+    }
+  })
 }
 
 function renderEditCardButton(card) {
@@ -124,28 +133,28 @@ function removeAnswer() {
   document.querySelector(".card-answer").remove()
 }
 
-function renderEditDeckForm(e) {
+function renderEditDeckForm(deck) {
   const editForm = document.createElement("FORM")
   const subjectInput = document.createElement("INPUT")
   const subjectInputLabel = document.createElement("LABEL")
   const submitButton = document.createElement("button")
   const closeButton = document.createElement("button")
-  const deckDiv = e.target.parentElement
-  const subject = e.target.id.split("-")[0]
+  const editFormContainer = document.getElementById("edit-form-container")
   const header = document.createElement("h3")
 
-  editForm.id = `${subject}-edit-form`
-  subjectInput.id = `${subject}-subject-input`
-  subjectInput.value = `${subject}`
-  subjectInputLabel.setAttribute("for", `${subject}-subject-input`)
+  editForm.id = `deck-${deck.id}-edit`
+  editForm.classList.add("edit-deck-form")
+  subjectInput.id = `deck-${deck.id}-subject-input`
+  subjectInput.value = `${deck.subject}`
+  subjectInputLabel.setAttribute("for", `${deck.id}-subject-input`)
   subjectInputLabel.innerText = "Subject: "
-  submitButton.id = `${subject}-submit-button`
+  submitButton.id = `${deck.id}-submit-button`
   submitButton.innerText = "submit"
-  closeButton.id = `${subject}-close-button`
+  closeButton.id = `${deck.id}-close-button`
   closeButton.innerText = "close"
   header.innerText = "Edit Deck"
 
-  deckDiv.appendChild(editForm)
+  editFormContainer.appendChild(editForm)
   editForm.appendChild(header)
   editForm.appendChild(subjectInputLabel)
   editForm.appendChild(subjectInput)
@@ -153,6 +162,14 @@ function renderEditDeckForm(e) {
   editForm.appendChild(closeButton)
 
   editForm.addEventListener("submit", (e) => editDeckFormHandler(e))
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault()
+    removeEditDeckForm()
+  })
+}
+
+function removeEditDeckForm() {
+  document.querySelector(".edit-deck-form").remove()
 }
 
 function renderEditCardForm(e) {
@@ -275,11 +292,13 @@ function postCard(question, answer, deck_id) {
 
 function editDeckFormHandler(e) {
   e.preventDefault()
-  const subject = e.target.id.split("-")[0]
-  const deck = Deck.all.find(deck => deck.subject === subject)
-  const inputValue = document.getElementById(`${subject}-subject-input`).value
-  patchDeck(deck, inputValue)
-  document.getElementById(`${subject}-edit-form`).remove()
+
+  const deckId = parseInt(e.target.id.split("-")[1])
+  const deck = Deck.all.find(deck => deck.id === deckId)
+  const subject = document.getElementById(`deck-${deckId}-subject-input`).value
+
+  patchDeck(deck, subject)
+  removeEditDeckForm()
 }
 
 function patchDeck(deck, subject) {
@@ -292,22 +311,21 @@ function patchDeck(deck, subject) {
   })
   .then(resp => resp.json())
   .then(updatedDeck => {
-    debugger
     if (updatedDeck.errors === undefined) {
       const deck = Deck.all.find(deck => deck.id === updatedDeck.id)
-      const cardContainer = document.getElementById(`${deck.subject} cards`)
-      document.getElementById(`${deck.subject}-edit-button`).remove()
-      document.getElementById(`${deck.subject}-delete-button`).remove()
-      document.getElementById(`${deck.subject} card list`).remove()
+      const subjectTag = document.getElementById(`deck-${deck.id}-subject`)
+      const cardListHeader = document.getElementById("card-list-header")
+      const deckSelection = document.getElementById("deck-selection")
 
+      for (option of deckSelection) {
+        if (option.value === deck.subject) {
+          option.innerText = `${updatedDeck.subject}`
+        }
+      }
+
+      subjectTag.innerText = `${updatedDeck.subject}`
+      cardListHeader.innerText = `${updatedDeck.subject}`
       deck.subject = updatedDeck.subject
-      cardContainer.id = `${deck.subject} cards`
-
-      document.getElementById(deck.id).children[0].innerText = deck.subject
-      document.querySelector(`option#opt-${deck.id}`).innerText = deck.subject
-      const ol = document.createElement("ol")
-      ol.classList.add("card-list")
-      cardContainer.appendChild(ol)
     } else {
       updatedDeck.errors.forEach(error => {
         alert(error)
