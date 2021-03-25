@@ -50,7 +50,6 @@ function renderEditDeckButton(deck) {
 }
 
 function renderEditCardButton(card) {
-  debugger
   const li = document.getElementById(`card-${card.id}`)
 
   const editCardButton = document.createElement("button")
@@ -59,6 +58,10 @@ function renderEditCardButton(card) {
   editCardButton.classList.add("edit-card-button")
   editCardButton.innerText = "edit card"
   li.appendChild(editCardButton)
+}
+
+function removeEditCardButton() {
+  document.querySelector(".edit-card-button").remove()
 }
 
 function renderDeleteDeckButton(deck) {
