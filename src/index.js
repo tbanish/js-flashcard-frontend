@@ -49,6 +49,23 @@ function removeCards() {
   }
 }
 
+function renderAnswer(card) {
+  if (document.querySelector(".card-answer") != null){
+    removeAnswer()
+  }
+
+  const answerTag = document.createElement("p")
+  const li = document.getElementById(`card-${card.id}`)
+  answerTag.id = `card-${card.id}-answer`
+  answerTag.classList.add("card-answer")
+  answerTag.innerText = `${card.answer}`
+  li.appendChild(answerTag)
+}
+
+function removeAnswer() {
+  document.querySelector(".card-answer").remove()
+}
+
 function renderEditDeleteDeckButtons(e) {
   const editDeckButton = document.createElement("button")
   const deleteDeckButton = document.createElement("button")
