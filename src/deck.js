@@ -31,11 +31,13 @@ class Deck {
     subjectTag.addEventListener("click", (e) => {
       if (cardList.childElementCount === 0) {
         renderCards(this)
+        renderEditDeckButton(this)
       } else if (this.subject === document.getElementById("card-list-header").innerText){
         removeCards()
       } else {
         removeCards()
         renderCards(this)
+        renderEditDeckButton(this)
       }
     })
   }
