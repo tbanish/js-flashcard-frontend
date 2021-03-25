@@ -36,9 +36,11 @@ class Deck {
       } else if (this.subject === document.getElementById("card-list-header").innerText){
         removeCards()
         removeEditDeckButton()
+        removeDeleteDeckButton()
       } else {
         removeCards()
         removeEditDeckButton()
+        removeDeleteDeckButton()
         renderCards(this)
         renderEditDeckButton(this)
         renderDeleteDeckButton(this)
