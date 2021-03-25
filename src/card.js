@@ -24,6 +24,14 @@ class Card {
     cardListHeader.innerText = `${this.deck().subject}`
     cardList.appendChild(li)
     li.appendChild(questionTag)
+
+    questionTag.addEventListener("click", (e) => {
+      if (li.childElementCount === 1) {
+        renderAnswer(this)
+      } else {
+        removeAnswer()
+      }
+    })
   }
 }
 
