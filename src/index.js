@@ -49,6 +49,16 @@ function renderEditDeckButton(deck) {
   li.appendChild(editDeckButton)
 }
 
+function renderDeleteDeckButton(deck) {
+  const li = document.getElementById(`deck-${deck.id}`)
+  const deleteDeckButton = document.createElement("button")
+
+  deleteDeckButton.id = `delete-deck-${deck.id}`
+  deleteDeckButton.classList.add("delete-deck-button")
+  deleteDeckButton.innerText = "delete deck"
+  li.appendChild(deleteDeckButton)
+}
+
 function removeEditDeckButton() {
   document.querySelector(".edit-deck-button").remove()
 }
