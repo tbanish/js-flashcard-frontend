@@ -11,14 +11,15 @@
     <div class="grid-container">
       <div id="grid-col-1">
         <div id="deck-container">
-          <h3>Decks</h3>
+          <h2>Decks</h2>
           <ul id="deck-list"></ul>
         </div>
       </div>
 
       <div id="grid-col-2">
         <div id="card-container">
-          <h3>Cards</h3>
+          <h2>Cards</h2>
+          <h3 id="card-list-header"></h3>
           <ol id="card-list"></ol>
         </div>
       </div>
@@ -26,13 +27,13 @@
       <div id="grid-col-3">
         <div id="new-form-container">
           <form class="new-form" id="new-deck-form" action="index.html" method="post">
-            <h3>Create a New Deck</h3>
+            <h2>Create a New Deck</h2>
             <label for="subject">Subject: </label>
             <input type="text" name="subject" value="">
             <input type="submit" value="create deck">
           </form>
           <form class="new-form" id="new-card-form" action="index.html" method="post">
-            <h3>Add a Card</h3>
+            <h2>Add a Card</h2>
             <select id="deck-selection">
               <option id="default-selection">--select deck--</option>
             </select>
