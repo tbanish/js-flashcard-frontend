@@ -49,27 +49,6 @@ function removeCards() {
   }
 }
 
-function removeDeckContentsWithoutCards(deck, e) {
-  document.getElementById(`${deck.subject}-edit-button`).remove()
-  document.getElementById(`${deck.subject}-delete-button`).remove()
-  if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
-    document.getElementById(`${e.target.innerText}-edit-form`).remove()
-  }
-}
-
-function removeDeckContentsWithCards(ol, e) {
-  ol.remove()
-  const newOl = document.createElement("ol")
-  const cardContainer = document.getElementById(`${e.target.innerText} cards`)
-  newOl.classList.add("card-list")
-  cardContainer.appendChild(newOl)
-  removeDeckEditDeleteButtons(e)
-
-  if (document.getElementById(`${e.target.innerText}-edit-form`) != null) {
-    document.getElementById(`${e.target.innerText}-edit-form`).remove()
-  }
-}
-
 function renderEditDeleteDeckButtons(e) {
   const editDeckButton = document.createElement("button")
   const deleteDeckButton = document.createElement("button")
