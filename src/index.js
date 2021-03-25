@@ -132,28 +132,6 @@ function removeDeckEditDeleteButtons(e) {
   deleteDeckButton.remove()
 }
 
-function renderOrRemoveAnswer(e) {
-  const cardId = parseInt(e.target.id.split(" ")[1])
-  const card = Card.all.find(card => card.id === cardId)
-  let cardDiv = document.createElement("div")
-  cardDiv.id = `Card ${cardId} div`
-  e.target.parentElement.appendChild(cardDiv)
-
-  if (document.getElementById(`Card ${cardId} div`).childElementCount === 0 && e.target.id === `Card ${cardId} question` && document.getElementById(`Card ${cardId}-edit-form`) === null) {
-    const answer = document.createElement("p")
-    answer.innerText = `${card.answer}`
-    answer.id = `answer ${cardId}`
-    cardDiv.appendChild(answer)
-    renderEditDeleteCardButtons(e, cardDiv)
-  } else if (e.target.id === `answer ${cardId}`) {
-    document.getElementById(`Card ${cardId} div`).remove()
-    document.getElementById(`Card ${cardId} div`).remove()
-  } else if (document.getElementById(`Card ${cardId} div`).childElementCount > 0 && e.target.id === `Card ${cardId} question`) {
-    document.getElementById(`Card ${cardId} div`).remove()
-    document.getElementById(`Card ${cardId} div`).remove()
-  }
-}
-
 function renderEditDeleteCardButtons(e, cardDiv) {
   const editCardButton = document.createElement("button")
   const deleteCardButton = document.createElement("button")
