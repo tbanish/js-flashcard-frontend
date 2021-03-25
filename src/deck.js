@@ -16,6 +16,7 @@ class Deck {
     const li = document.createElement("li")
     const subjectTag = document.createElement("p")
     const option = document.createElement("option")
+    const cardList = document.getElementById("card-list")
 
     li.id = `deck-${this.id}`
     subjectTag.id = `deck-${this.id}-subject`
@@ -28,7 +29,14 @@ class Deck {
     deckSelection.appendChild(option)
 
     subjectTag.addEventListener("click", (e) => {
-      renderCards(this)
+      if (cardList.childElementCount === 0) {
+        renderCards(this)
+      } else if (this.subject === document.getElementById("card-list-header").innerText){
+        removeCards()
+      } else {
+        removeCards()
+        renderCards(this)
+      }
     })
   }
 }
