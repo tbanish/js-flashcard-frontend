@@ -6,31 +6,25 @@ class Deck {
   }
 
   renderDeck() {
-    const deckContainer = document.querySelector(".deck-container")
-    const select = document.querySelector("select")
-    const div = document.createElement("div")
-    const subjectPTag = document.createElement("p")
-    const cardContainer = document.createElement("div")
-    const cardList = document.createElement("ol")
+    const deckList = document.getElementById("deck-list")
+    const deckSelection = document.getElementById("deck-selection")
+    const li = document.createElement("li")
+    const subjectTag = document.createElement("p")
     const option = document.createElement("option")
 
-    option.value = `${this.subject}`
+    li.id = `deck-${this.id}`
+    subjectTag.id = `deck-${this.id}-subject`
+    subjectTag.innerText = `${this.subject}`
+    option.id = `deck-${this.id}-option`
     option.innerText = `${this.subject}`
-    option.id = `opt-${this.id}`
-    div.id = `${this.id}`
-    div.classList.add("deck-div")
-    subjectPTag.innerHTML = `${this.subject}`
-    subjectPTag.classList.add("deck-subject")
-    cardContainer.classList.add("card-container")
-    cardContainer.id = `${this.subject} cards`
-    cardList.classList.add("card-list")
 
-    div.appendChild(subjectPTag)
-    deckContainer.appendChild(div)
-    div.appendChild(cardContainer)
-    cardContainer.appendChild(cardList)
-    select.appendChild(option)
-    subjectPTag.addEventListener("click", (e) => renderOrRemoveCards(e))
+    deckList.appendChild(li)
+    li.appendChild(subjectTag)
+    deckSelection.appendChild(option)
+
+    subjectTag.addEventListener("click", (e) => {
+      renderCards(e)
+    })
   }
 }
 
