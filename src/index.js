@@ -44,8 +44,13 @@ function renderEditDeckButton(deck) {
   const editDeckButton = document.createElement("button")
 
   editDeckButton.id = `edit-deck-${deck.id}`
+  editDeckButton.classList.add("edit-deck-button")
   editDeckButton.innerText = "edit deck"
   li.appendChild(editDeckButton)
+}
+
+function removeEditDeckButton() {
+  document.querySelector(".edit-deck-button").remove()
 }
 
 function removeCards() {
