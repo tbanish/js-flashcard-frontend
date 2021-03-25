@@ -28,6 +28,7 @@ class Card {
     questionTag.addEventListener("click", (e) => {
       if (li.childElementCount === 1) {
         renderAnswer(this)
+        renderEditCardButton(this)
       } else {
         removeAnswer()
       }
