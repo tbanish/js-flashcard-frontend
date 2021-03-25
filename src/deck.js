@@ -29,7 +29,21 @@ class Deck {
     deckSelection.appendChild(option)
 
     subjectTag.addEventListener("click", (e) => {
-      if (cardList.childElementCount === 0) {
+      if (this.cards().length === 0 && document.querySelector(".edit-deck-button") === null) {
+        renderCards(this)
+        renderEditDeckButton(this)
+        renderDeleteDeckButton(this)
+      } else if (this.cards().length === 0 && document.querySelector(".edit-deck-button") != null) {
+        removeCards()
+        removeEditDeckButton()
+        removeDeleteDeckButton()
+      } else if (cardList.childElementCount === 0 && document.querySelector(".edit-deck-button") != null) {
+        removeEditDeckButton()
+        removeDeleteDeckButton()
+        renderCards(this)
+        renderEditDeckButton(this)
+        renderDeleteDeckButton(this)
+      } else if (cardList.childElementCount === 0) {
         renderCards(this)
         renderEditDeckButton(this)
         renderDeleteDeckButton(this)
