@@ -67,6 +67,8 @@ function renderEditCardButton(card) {
   editCardButton.classList.add("edit-card-button")
   editCardButton.innerText = "edit card"
   li.appendChild(editCardButton)
+
+  editCardButton.addEventListener("click", () => renderEditCardForm(card))
 }
 
 function renderDeleteCardButton(card) {
