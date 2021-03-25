@@ -5,6 +5,11 @@ class Deck {
     Deck.all.push(this)
   }
 
+  cards() {
+    const cards = Card.all.filter(card => card.deckId === this.id)
+    return cards;
+  }
+
   renderDeck() {
     const deckList = document.getElementById("deck-list")
     const deckSelection = document.getElementById("deck-selection")
@@ -23,7 +28,7 @@ class Deck {
     deckSelection.appendChild(option)
 
     subjectTag.addEventListener("click", (e) => {
-      renderCards(e)
+      renderCards(this)
     })
   }
 }
