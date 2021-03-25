@@ -39,6 +39,16 @@ function renderCards(deck) {
   cards.forEach(card => card.renderCard())
 }
 
+function removeCards() {
+  const cardList = document.getElementById("card-list")
+  const cardListHeader = document.getElementById("card-list-header")
+  cardListHeader.innerText = ""
+
+  while (cardList.firstChild) {
+    cardList.removeChild(cardList.firstChild)
+  }
+}
+
 // function renderOrRemoveCards(e) {
 //   const deck = Deck.all.find(deck => deck.subject === e.target.innerText)
 //   const cards = Card.all.filter(card => card.deckId === deck.id)
