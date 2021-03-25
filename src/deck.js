@@ -32,6 +32,7 @@ class Deck {
       if (cardList.childElementCount === 0) {
         renderCards(this)
         renderEditDeckButton(this)
+        renderDeleteDeckButton(this)
       } else if (this.subject === document.getElementById("card-list-header").innerText){
         removeCards()
         removeEditDeckButton()
@@ -40,6 +41,7 @@ class Deck {
         removeEditDeckButton()
         renderCards(this)
         renderEditDeckButton(this)
+        renderDeleteDeckButton(this)
       }
     })
   }
