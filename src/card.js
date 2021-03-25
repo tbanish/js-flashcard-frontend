@@ -8,18 +8,15 @@ class Card {
   }
 
   renderCard() {
+    const cardList = document.getElementById("card-list")
     const li = document.createElement("li")
-    const deck = Deck.all.find(deck => deck.id === this.deckId).subject
-    const ol = document.getElementById(`${deck}`+" cards").children[0]
-    const question = document.createElement("p")
+    const questionTag = document.createElement("p")
 
-    li.id = `Card ${this.id}`
-    question.innerText = this.question
-    question.id = `Card ${this.id} question`
-    question.classList.add("card-questions")
-    ol.id = `${deck} card list`
-    ol.appendChild(li)
-    li.appendChild(question)
+    li.id = `card-${this.id}`
+    questionTag.id = `card-${this.id}-question`
+    questionTag.innerText = `${this.question}`
+    cardList.appendChild(li)
+    li.appendChild(questionTag)
   }
 }
 
