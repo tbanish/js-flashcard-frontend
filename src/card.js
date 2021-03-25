@@ -29,14 +29,18 @@ class Card {
       if (document.querySelector(".card-answer") === null) {
         renderAnswer(this)
         renderEditCardButton(this)
+        renderDeleteCardButton(this)
       } else if (this.id === parseInt(document.querySelector(".card-answer").id.split("-")[1])){
         removeAnswer()
         removeEditCardButton()
+        removeDeleteCardButton()
       } else {
         removeAnswer()
         removeEditCardButton()
+        removeDeleteCardButton()
         renderAnswer(this)
         renderEditCardButton(this)
+        renderDeleteCardButton(this)
       }
     })
   }
