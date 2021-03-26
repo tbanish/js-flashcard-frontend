@@ -178,9 +178,7 @@ function removeEditDeckForm() {
   document.querySelector(".edit-deck-form").remove()
 }
 
-function renderEditCardForm(e) {
-  e.preventDefault()
-
+function renderEditCardForm(card) {
   const editCardForm = document.createElement("FORM")
   const questionInputLabel = document.createElement("LABEL")
   const questionInput = document.createElement("INPUT")
@@ -189,26 +187,24 @@ function renderEditCardForm(e) {
   const submitButton = document.createElement("button")
   const header = document.createElement("h3")
   const closeButton = document.createElement("button")
-  const cardIdLabel = e.target.id.split("-")[0]
-  const cardId = parseInt(e.target.id.split("-")[0].split(" ")[1])
-  const card = Card.all.find(card => card.id === cardId)
+  const editFormContainer = document.getElementById("edit-form-container")
 
-  editCardForm.id = `${cardIdLabel}-edit-form`
-  questionInput.id = `${cardIdLabel}-question-input`
+  editCardForm.id = `Card-${card.id}-edit`
+  editCardForm.classList.add("edit-card-form")
+  questionInput.id = `Card-${card.id}-question-input`
   questionInput.value = `${card.question}`
-  questionInputLabel.setAttribute("for", `${cardIdLabel}-question-input`)
+  questionInputLabel.setAttribute("for", `Card-${card.id}-question-input`)
   questionInputLabel.innerText = "Question: "
-  answerInput.id = `${cardIdLabel}-answer-input`
+  answerInput.id = `Card-${card.id}-answer-input`
   answerInput.value = `${card.answer}`
-  answerInputLabel.setAttribute("for", `${cardIdLabel}-answer-input`)
+  answerInputLabel.setAttribute("for", `Card-${card.id}-answer-input`)
   answerInputLabel.innerText = "Answer: "
-  submitButton.id = `${cardIdLabel}-submit-button`
-  submitButton.innerText = "submit"
-  closeButton.id = `${cardIdLabel}-close-button`
+  submitButton.innerText = "edit card"
+  closeButton.id = `Card-${card.id}-close-button`
   closeButton.innerText = "close"
   header.innerText = "Edit Card"
 
-  e.target.parentElement.appendChild(editCardForm)
+  editFormContainer.appendChild(editCardForm)
   editCardForm.appendChild(header)
   editCardForm.appendChild(questionInputLabel)
   editCardForm.appendChild(questionInput)
@@ -342,10 +338,10 @@ function patchDeck(deck, subject) {
 
 function editCardFormHandler(e) {
   e.preventDefault()
-  const cardId = parseInt(e.target.id.split("-")[0].split(" ")[1])
+  const cardId = parseInt(e.target.id.split("-")[1])
   const card = Card.all.find(card => card.id === cardId)
-  const question = document.getElementById(`Card ${cardId} question-question-input`).value
-  const answer = document.getElementById(`Card ${cardId} question-answer-input`).value
+  const question = document.getElementById(`Card-${cardId}-question-input`).value
+  const answer = document.getElementById(`Card-${cardId}-answer-input`).value
   patchCard(card, question, answer)
 }
 
@@ -363,9 +359,9 @@ function patchCard(card, question, answer) {
       const oldCard = Card.all.find(card => card.id === updatedCard.id)
       oldCard.question = updatedCard.question
       oldCard.answer = updatedCard.answer
-      document.getElementById(`Card ${updatedCard.id} question`).innerText = updatedCard.question
-      document.getElementById(`answer ${updatedCard.id}`).innerText = updatedCard.answer
-      document.getElementById(`Card ${updatedCard.id} question-edit-form`).remove()
+      document.getElementById(`card-${updatedCard.id}-question`).innerText = updatedCard.question
+      document.getElementById(`card-${updatedCard.id}-answer`).innerText = updatedCard.answer
+      document.querySelector(".edit-card-form").remove()
     } else {
       updatedCard.errors.forEach(error => {
         alert(error)
