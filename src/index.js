@@ -90,6 +90,8 @@ function renderDeleteDeckButton(deck) {
   deleteDeckButton.classList.add("delete-deck-button")
   deleteDeckButton.innerText = "delete deck"
   li.appendChild(deleteDeckButton)
+
+  deleteDeckButton.addEventListener("click", () => deleteDeck(deck))
 }
 
 function removeEditCardButton() {
@@ -379,14 +381,22 @@ function deleteDeck(deck) {
   const index = Deck.all.indexOf(deleteDeck)
   const selectTag = document.querySelector("select")
 
+  Card.all.forEach(card => {
+    if (card.deckId === deckId) {
+      let ind = Card.all.indexOf(card)
+      Card.all.splice(ind, 1)
+    }
+  })
+
   Deck.all.splice(index, 1)
-  document.getElementById(deckId).remove()
+  document.getElementById(`deck-${deckId}`).remove()
 
   for (const option of selectTag) {
     if (option.innerText === deck.subject) {
       option.remove()
     }
   }
+  removeCards()
 }
 
 function deleteCard(card) {
