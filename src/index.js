@@ -80,6 +80,8 @@ function renderDeleteCardButton(card) {
   deleteCardButton.classList.add("delete-card-button")
   deleteCardButton.innerText = "delete card"
   li.appendChild(deleteCardButton)
+
+  deleteCardButton.addEventListener("click", () => deleteCard(card))
 }
 
 function renderDeleteDeckButton(deck) {
@@ -407,5 +409,6 @@ function deleteCard(card) {
   const deleteCard = Card.all.find(card => card.id === cardId)
   const index = Card.all.indexOf(deleteCard)
   Card.all.splice(index, 1)
-  document.getElementById(`Card ${card.id}`).remove()
+  document.getElementById(`card-${card.id}`).remove()
+  document.getElementById("card-list-header").innerText = ""
 }
