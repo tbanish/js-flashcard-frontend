@@ -68,7 +68,13 @@ function renderEditCardButton(card) {
   editCardButton.innerText = "edit card"
   li.appendChild(editCardButton)
 
-  editCardButton.addEventListener("click", () => renderEditCardForm(card))
+  editCardButton.addEventListener("click", () => {
+    if (document.querySelector(".edit-card-form") === null) {
+      renderEditCardForm(card)
+    } else {
+      removeEditCardForm()
+    }
+  })
 }
 
 function renderDeleteCardButton(card) {
@@ -216,10 +222,14 @@ function renderEditCardForm(card) {
   editCardForm.addEventListener("submit", (e) => {
     editCardFormHandler(e)
   })
+
+  closeButton.addEventListener("click", (e) => {
+    e.preventDefault()
+    removeEditCardForm()})
 }
 
-function removeEditCardForm(cardId){
-  document.getElementById(`Card ${cardId} question-edit-form`).remove()
+function removeEditCardForm(){
+  document.querySelector(".edit-card-form").remove()
 }
 
 // FORM HANDLERS AND POST & PATCH REQUESTS
