@@ -110,3 +110,13 @@ h3 {
   font-family: Raleway;
   outline: none;
 }
+
+.btn:hover,
+.edit-deck-button:hover,
+.edit-card-button:hover,
+.delete-deck-button:hover,
+.delete-card-button:hover {
+  font-weight: bolder;
+  font-size: 15px;
+  box-shadow: 3px 3px;
+}
