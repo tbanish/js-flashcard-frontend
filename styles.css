@@ -173,4 +173,9 @@ select {
   border-radius: 10px;
   border: 1px solid #ccc;
   padding: 5px;
+  outline:none
+}
+
+select:focus {
+  outline:none
 }
