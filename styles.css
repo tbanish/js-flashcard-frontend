@@ -80,3 +80,20 @@ h3 {
 .edit-deck-form button {
   margin: 10px;
 }
+
+#deck-container {
+  background-color: grey;
+  color: white;
+  padding: 5px;
+}
+
+#card-container {
+  background-color: #d9c1b8;
+  color: white;
+  padding: 10px;
+}
+
+#new-form-container {
+  background-color: #d1d9b8;
+  color: white;
+}
