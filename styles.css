@@ -70,3 +70,13 @@ h3 {
   margin-bottom: 5px;
   padding: 30px;
 }
+
+.edit-deck-form h3,
+.edit-card-form h3 {
+  padding: 20px;
+  letter-spacing: 3px;
+}
+
+.edit-deck-form button {
+  margin: 10px;
+}
