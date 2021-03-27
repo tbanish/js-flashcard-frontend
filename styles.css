@@ -1,1 +1,11 @@
+body {
+  margin:0;
+  font-family: Raleway;
+  background-color: #f3ebd2;
+}
 
+header{
+  margin:0;
+  background-color: #cdd6f2;
+  height: 100px;
+}
