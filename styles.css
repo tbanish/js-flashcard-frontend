@@ -97,3 +97,16 @@ h3 {
   background-color: #d1d9b8;
   color: white;
 }
+
+.btn,
+.edit-deck-button,
+.edit-card-button,
+.delete-deck-button,
+.delete-card-button {
+  border-radius: 8px;
+  margin: 5px;
+  border-style: none;
+  padding: 7px;
+  font-family: Raleway;
+  outline: none;
+}
