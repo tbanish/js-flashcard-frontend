@@ -161,3 +161,9 @@ input {
   font-weight: bold;
   padding-right: 10px;
 }
+
+#card-list-header {
+  color: #323232;
+  font-size: 2em;
+  font-weight: bolder;
+}
