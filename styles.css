@@ -120,3 +120,12 @@ h3 {
   font-size: 15px;
   box-shadow: 3px 3px;
 }
+
+.btn:active,
+.edit-deck-button:active,
+.edit-card-button:active,
+.delete-deck-button:active,
+.delete-card-button:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
