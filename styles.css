@@ -129,3 +129,11 @@ h3 {
   transform: translateY(4px);
   box-shadow: none;
 }
+
+.btn:focus,
+.edit-deck-button:focus,
+.edit-card-button:focus,
+.delete-deck-button:focus,
+.delete-card-button:focus {
+  outline: none;
+}
