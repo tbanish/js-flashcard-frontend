@@ -9,3 +9,15 @@ header{
   background-color: #cdd6f2;
   height: 100px;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.65fr;
+}
+
+#grid-col-1,
+#grid-col-2,
+#grid-col-3 {
+  margin:10px;
+  padding: 1em;
+}
