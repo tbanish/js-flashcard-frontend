@@ -153,6 +153,7 @@ function renderEditDeckForm(deck) {
   const closeButton = document.createElement("button")
   const editFormContainer = document.getElementById("edit-form-container")
   const header = document.createElement("h3")
+  const buttonLineBreak = document.createElement("br")
 
   editForm.id = `deck-${deck.id}-edit`
   editForm.classList.add("edit-deck-form")
@@ -162,14 +163,17 @@ function renderEditDeckForm(deck) {
   subjectInputLabel.innerText = "Subject: "
   submitButton.id = `${deck.id}-submit-button`
   submitButton.innerText = "submit"
+  submitButton.classList.add("btn")
   closeButton.id = `${deck.id}-close-button`
   closeButton.innerText = "close"
+  closeButton.classList.add("btn")
   header.innerText = "Edit Deck"
 
   editFormContainer.appendChild(editForm)
   editForm.appendChild(header)
   editForm.appendChild(subjectInputLabel)
   editForm.appendChild(subjectInput)
+  editForm.appendChild(buttonLineBreak)
   editForm.appendChild(submitButton)
   editForm.appendChild(closeButton)
 
@@ -194,6 +198,10 @@ function renderEditCardForm(card) {
   const header = document.createElement("h3")
   const closeButton = document.createElement("button")
   const editFormContainer = document.getElementById("edit-form-container")
+  const questionLineBreak1 = document.createElement("br")
+  const questionLineBreak2 = document.createElement("br")
+  const answerLineBreak1 = document.createElement("br")
+  const answerLineBreak2 = document.createElement("br")
 
   editCardForm.id = `Card-${card.id}-edit`
   editCardForm.classList.add("edit-card-form")
@@ -206,16 +214,22 @@ function renderEditCardForm(card) {
   answerInputLabel.setAttribute("for", `Card-${card.id}-answer-input`)
   answerInputLabel.innerText = "Answer: "
   submitButton.innerText = "edit card"
+  submitButton.classList.add("btn")
   closeButton.id = `Card-${card.id}-close-button`
   closeButton.innerText = "close"
+  closeButton.classList.add("btn")
   header.innerText = "Edit Card"
 
   editFormContainer.appendChild(editCardForm)
   editCardForm.appendChild(header)
   editCardForm.appendChild(questionInputLabel)
   editCardForm.appendChild(questionInput)
+  editCardForm.appendChild(questionLineBreak1)
+  editCardForm.appendChild(questionLineBreak2)
   editCardForm.appendChild(answerInputLabel)
   editCardForm.appendChild(answerInput)
+  editCardForm.appendChild(answerLineBreak1)
+  editCardForm.appendChild(answerLineBreak2)
   editCardForm.appendChild(submitButton)
   editCardForm.appendChild(closeButton)
 
