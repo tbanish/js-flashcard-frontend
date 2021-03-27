@@ -53,3 +53,10 @@ h3 {
   margin-left: 40px;
   padding: 1em;
 }
+
+#deck-container,
+#card-container,
+#new-form-container {
+  min-height: 375px;
+  border-radius: 25px;
+}
