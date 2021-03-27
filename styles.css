@@ -48,3 +48,8 @@ h3 {
 #deck-list {
   list-style: none;
 }
+
+.new-form {
+  margin-left: 40px;
+  padding: 1em;
+}
