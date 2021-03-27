@@ -145,3 +145,19 @@ input {
   padding: 5px;
   font-family: Raleway;
 }
+
+.card-question {
+  color: black
+}
+
+.card-question:hover,
+#deck-list li:hover {
+  font-weight: bolder;
+  font-size: 1.1em;
+}
+
+.card-answer {
+  color: #7f0000;
+  font-weight: bold;
+  padding-right: 10px;
+}
