@@ -21,3 +21,26 @@ header{
   margin:10px;
   padding: 1em;
 }
+
+h1 {
+  margin:0;
+  text-align: center;
+  font-family: Train One;
+  font-size: 4.5em;
+  display: block;
+  color: #ffff99;
+}
+
+h2 {
+  margin:0;
+  padding: 1em;
+  text-align: center;
+  font-family: Dela Gothic One;
+  letter-spacing: 3px;
+}
+
+h3 {
+  text-align: center;
+  margin:0;
+  font-family: Chango;
+}
