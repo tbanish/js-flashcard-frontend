@@ -60,3 +60,13 @@ h3 {
   min-height: 375px;
   border-radius: 25px;
 }
+
+.edit-deck-form,
+.edit-card-form {
+  min-height: 275px;
+  border-radius: 25px;
+  background-color: #ffd27f;
+  color: white;
+  margin-bottom: 5px;
+  padding: 30px;
+}
