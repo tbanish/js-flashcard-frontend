@@ -20,6 +20,7 @@ class Card {
 
     li.id = `card-${this.id}`
     questionTag.id = `card-${this.id}-question`
+    questionTag.classList.add("card-question")
     questionTag.innerText = `${this.question}`
     cardListHeader.innerText = `${this.deck().subject}`
     cardList.appendChild(li)
