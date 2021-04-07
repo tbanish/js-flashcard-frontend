@@ -7,7 +7,7 @@ class Card {
     Card.all.push(this)
   }
 
-  deck() {
+  get deck() {
     const deck = Deck.all.find(deck => deck.id === this.deckId)
     return deck
   }
@@ -22,7 +22,7 @@ class Card {
     questionTag.id = `card-${this.id}-question`
     questionTag.classList.add("card-question")
     questionTag.innerText = `${this.question}`
-    cardListHeader.innerText = `${this.deck().subject}`
+    cardListHeader.innerText = `${this.deck.subject}`
     cardList.appendChild(li)
     li.appendChild(questionTag)
 
