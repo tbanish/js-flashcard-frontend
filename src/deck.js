@@ -5,7 +5,7 @@ class Deck {
     Deck.all.push(this)
   }
 
-  cards() {
+  get cards() {
     const cards = Card.all.filter(card => card.deckId === this.id)
     return cards;
   }
