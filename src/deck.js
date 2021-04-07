@@ -10,6 +10,27 @@ class Deck {
     return cards;
   }
 
+  static findById(id) {
+    const deck = Deck.all.find(deck => deck.id === id)
+    return deck
+  }
+
+  static delete(deck) {
+    const deleteDeck = Deck.findById(deck.id)
+    const index = Deck.all.indexOf(deleteDeck)
+    deleteDeck.destroyAllCards()
+    Deck.all.splice(index, 1)
+  }
+
+  destroyAllCards() {
+    Card.all.forEach(card => {
+      if (card.deckId === this.id) {
+        let ind = Card.all.indexOf(card)
+        Card.all.splice(ind, 1)
+      }
+    })
+  }
+
   renderDeck() {
     const deckList = document.getElementById("deck-list")
     const deckSelection = document.getElementById("deck-selection")
