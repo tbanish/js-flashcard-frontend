@@ -399,19 +399,9 @@ function deleteDeck(deck) {
     method: "DELETE"
   })
   const deckId = deck.id
-  const deleteDeck = Deck.all.find(deck => deck.id === deckId)
-  const index = Deck.all.indexOf(deleteDeck)
   const selectTag = document.querySelector("select")
-
-  Card.all.forEach(card => {
-    if (card.deckId === deckId) {
-      let ind = Card.all.indexOf(card)
-      Card.all.splice(ind, 1)
-    }
-  })
-
-  Deck.all.splice(index, 1)
-  document.getElementById(`deck-${deckId}`).remove()
+  Deck.delete(deck)
+  document.getElementById(`deck-${deck.id}`).remove()
 
   for (const option of selectTag) {
     if (option.innerText === deck.subject) {
