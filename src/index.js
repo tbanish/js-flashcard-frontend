@@ -320,7 +320,7 @@ function editDeckFormHandler(e) {
   e.preventDefault()
 
   const deckId = parseInt(e.target.id.split("-")[1])
-  const deck = Deck.all.find(deck => deck.id === deckId)
+  const deck = Deck.findById(deckId)
   const subject = document.getElementById(`deck-${deckId}-subject-input`).value
 
   patchDeck(deck, subject)
