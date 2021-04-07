@@ -338,7 +338,7 @@ function patchDeck(deck, subject) {
   .then(resp => resp.json())
   .then(updatedDeck => {
     if (updatedDeck.errors === undefined) {
-      const deck = Deck.all.find(deck => deck.id === updatedDeck.id)
+      const deck = Deck.findById(updatedDeck.id)
       const subjectTag = document.getElementById(`deck-${deck.id}-subject`)
       const cardListHeader = document.getElementById("card-list-header")
       const deckSelection = document.getElementById("deck-selection")
