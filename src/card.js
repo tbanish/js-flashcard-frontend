@@ -12,6 +12,17 @@ class Card {
     return deck
   }
 
+  static findById(id) {
+    const card = Card.all.find(card => card.id === id)
+    return card
+  }
+
+  static delete(card) {
+    const deleteCard = Card.findById(card.id)
+    const index = Card.all.indexOf(deleteCard)
+    Card.all.splice(index, 1)
+  }
+
   renderCard() {
     const cardList = document.getElementById("card-list")
     const li = document.createElement("li")
