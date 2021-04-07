@@ -284,7 +284,7 @@ function newCardFormHandler(e) {
     const question = document.querySelector('[name="question"]').value
     const answer = document.querySelector('[name="answer"]').value
     const deckSubject = document.querySelector("select").value
-    const deck = Deck.all.find(deck => deck.subject === deckSubject)
+    const deck = Deck.findDeckBySubject(deckSubject)
     postCard(question, answer, deck.id)
   }
 }
