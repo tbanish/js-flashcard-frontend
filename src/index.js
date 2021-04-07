@@ -363,7 +363,7 @@ function patchDeck(deck, subject) {
 function editCardFormHandler(e) {
   e.preventDefault()
   const cardId = parseInt(e.target.id.split("-")[1])
-  const card = Card.all.find(card => card.id === cardId)
+  const card = Card.findById(cardId)
   const question = document.getElementById(`Card-${cardId}-question-input`).value
   const answer = document.getElementById(`Card-${cardId}-answer-input`).value
   patchCard(card, question, answer)
@@ -380,7 +380,7 @@ function patchCard(card, question, answer) {
   .then(resp => resp.json())
   .then(updatedCard => {
     if (updatedCard.errors === undefined) {
-      const oldCard = Card.all.find(card => card.id === updatedCard.id)
+      const oldCard = Card.findById(updatedCard.id)
       oldCard.question = updatedCard.question
       oldCard.answer = updatedCard.answer
       document.getElementById(`card-${updatedCard.id}-question`).innerText = updatedCard.question
