@@ -35,7 +35,7 @@ function createCards(newDeckCards) {
 }
 
 function renderCards(deck) {
-  const cards = deck.cards()
+  const cards = deck.cards
   cards.forEach(card => card.renderCard())
 }
 
