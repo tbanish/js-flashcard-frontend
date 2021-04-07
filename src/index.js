@@ -415,10 +415,7 @@ function deleteCard(card) {
   fetch(cardsEndpoint+`/${card.id}`, {
     method: "DELETE"
   })
-  const cardId = card.id
-  const deleteCard = Card.all.find(card => card.id === cardId)
-  const index = Card.all.indexOf(deleteCard)
-  Card.all.splice(index, 1)
+  Card.delete(card)
   document.getElementById(`card-${card.id}`).remove()
   document.getElementById("card-list-header").innerText = ""
 }
