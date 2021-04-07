@@ -22,6 +22,11 @@ class Deck {
     Deck.all.splice(index, 1)
   }
 
+  static findDeckBySubject(subject) {
+    const deck = Deck.all.find(deck => deck.subject === subject)
+    return deck
+  }
+
   destroyAllCards() {
     Card.all.forEach(card => {
       if (card.deckId === this.id) {
