@@ -1,4 +1,4 @@
 # Sprint 1: create test model, loadTests
-- [ ] build test model
-- [ ] build loadTests function to fetch tests
-- [ ] create new test objects
+- [x] build test model
+- [x] build loadTests function to fetch tests
+- [x] create new test objects
