@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   newCardForm.addEventListener("submit", (e) => newCardFormHandler(e))
   newDeckForm.addEventListener("submit", (e) => newDeckFormHandler(e))
   loadDecks();
+  loadTests();
 })
 
 function loadDecks() {
@@ -21,6 +22,22 @@ function loadDecks() {
       const newDeckCards = deck.attributes.cards
       newDeck.renderDeck()
       createCards(newDeckCards)
+    }
+  })
+}
+
+function loadTests() {
+  fetch(testsEndpoint)
+  .then(resp => resp.json())
+  .then(tests => {
+    for (const test of tests.data) {
+      const score = test.attributes.score
+      const duration = test.attributes.duration
+      const correctIds = test.attributes.correct_ids
+      const incorrectIds = test.attributes.incorrect_ids
+      const deckId = test.attributes.deck_id
+      const testId = parseInt(test.id)
+      const newTest = new Test(testId, duration, score, correctIds, incorrectIds, deckId)
     }
   })
 }
