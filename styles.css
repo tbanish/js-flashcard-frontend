@@ -11,6 +11,26 @@ header{
   border-bottom: 1px solid #cccccc;
 }
 
+.test-grid {
+  grid-template-columns: 2fr 1fr;
+  display: grid;
+  grid-column-gap: 3%;
+  margin: 5% 2% 10% 2%;
+  min-height: 550px;
+}
+
+.test-deck-selection {
+  margin: 0 0 0 5%;
+}
+
+.test-box {
+  background: #fb9b8f;
+  border-radius: 30px;
+  color: #ffffff;
+  min-height: 100%;
+  box-shadow: 5px 5px 5px grey;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.65fr;
