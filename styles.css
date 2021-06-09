@@ -31,6 +31,36 @@ header{
   box-shadow: 5px 5px 5px grey;
 }
 
+.score-card{
+  background: #c4aae3;
+  border-radius: 30px;
+  color: #ffffff;
+  min-height: 45%;
+  box-shadow: 5px 5px 5px grey;
+  padding: 5%;
+  margin: 0 0 2.5% 0;
+}
+
+.stats {
+  background: #8faa87;
+  border-radius: 30px;
+  color: #ffffff;
+  min-height: 45%;
+  box-shadow: 5px 5px 5px grey;
+  padding: 5%;
+  margin: 2.5% 0 0 0;
+}
+
+footer {
+  height: 60px;
+  margin: 5% 0 0 0;
+  background: #cdd6f2;
+  padding: 1%;
+  border-top: 1px solid #cccccc;
+  color: grey;
+  bottom: 0;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.65fr;
