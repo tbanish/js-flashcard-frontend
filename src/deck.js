@@ -42,6 +42,7 @@ class Deck {
     const li = document.createElement("li")
     const subjectTag = document.createElement("p")
     const option = document.createElement("option")
+    const testOption = document.createElement("option")
     const cardList = document.getElementById("card-list")
     const testDeckSelection = document.querySelector('.test-deck-selection')
 
@@ -50,11 +51,13 @@ class Deck {
     subjectTag.innerText = `${this.subject}`
     option.id = `deck-${this.id}-option`
     option.innerText = `${this.subject}`
+    testOption.id = `test-deck-${this.id}-option`
+    testOption.innerText = `${this.subject}`
 
     deckList.appendChild(li)
     li.appendChild(subjectTag)
     deckSelection.appendChild(option)
-    testDeckSelection.appendChild(option)
+    testDeckSelection.appendChild(testOption)
 
     subjectTag.addEventListener("click", (e) => {
       if (document.querySelector(".edit-deck-button") === null) {
