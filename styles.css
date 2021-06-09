@@ -202,6 +202,10 @@ h3 {
   outline: none;
 }
 
+.start {
+  margin: 10% 0 0 40%;
+}
+
 input {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -249,4 +253,9 @@ select:focus {
 
 select:hover {
   cursor: pointer;
+}
+
+.test-box h3 {
+  font-size: 2em;
+  color: black;
 }
