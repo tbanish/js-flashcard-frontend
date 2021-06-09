@@ -40,6 +40,14 @@ function loadTests() {
       const newTest = new Test(testId, duration, score, correctIds, incorrectIds, deckId)
     }
   })
+
+  const testDeckSelection = document.querySelector('.test-deck-selection')
+  testDeckSelection.addEventListener("change", (e) => handleTestSelection(e))
+}
+
+function handleTestSelection(e) {
+  const subject = e.target.value
+  Test.renderTest(subject)
 }
 
 function createCards(newDeckCards) {
