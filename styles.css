@@ -341,3 +341,19 @@ select:hover {
   font-size: 1.1em;
   margin: 0 0 0 5%;
 }
+
+.right.answer.btn:hover,
+ .wrong.answer.btn:hover{
+  font-size: 1.1em;
+  border: 1px solid yellow;
+  box-shadow: none;
+}
+
+.test-card.hidden {
+  display: none;
+}
+
+textarea {
+  width: 90%;
+  height: 5em;
+}
