@@ -182,6 +182,20 @@ function removeAnswerButtons() {
   document.querySelector(".wrong").remove()
 }
 
+function flipCard() {
+  if (document.querySelector(".test-card.is-flipped")) {
+    document.querySelector(".test-card.is-flipped").className = "test-card"
+  } else {
+    document.querySelector(".test-card").className = "test-card is-flipped"
+  }
+}
+
+function flipCardBack() {
+  if (document.querySelector(".test-card.is-flipped")) {
+    document.querySelector(".test-card.is-flipped").className = "test-card"
+  }
+}
+
 function createCards(newDeckCards) {
   for (const card of newDeckCards) {
     const id = card.id
