@@ -56,6 +56,41 @@ function handleTestSelection(e) {
   renderTestHeader(subject)
 }
 
+function renderTestHeader(subject) {
+  let deck = Deck.findDeckBySubject(subject)
+
+  if (document.querySelector(".test-header").innerText !== "Test Box") {
+    document.querySelector(".test-header").innerText = "Test Box"
+  }
+
+  if (subject === "--select a deck to test your knowledge--") {
+    return
+  }
+
+  const header = document.querySelector(".test-header")
+  header.innerText = subject
+
+  document.querySelector(".test-card-question").innerText = ""
+  document.querySelector(".test-card-answer").innerText = ""
+  document.querySelector(".test-card").className = "test-card"
+  document.querySelector(".incorrect-answers").innerText = 0
+  document.querySelector(".correct-answers").innerText = 0
+}
+
+function startTestHandler() {
+  if (document.querySelector(".test-header").innerText === "Test Box") {
+    alert("select a deck first")
+  }
+
+  const deck = Deck.findDeckBySubject(document.querySelector(".test-header").innerText)
+  const cards = deck.cards
+
+  const newTest = new Test
+  newTest.cardQueue = cards
+  let currentCard = newTest.cardQueue.shift()
+  renderNextCard(currentCard, newTest)
+}
+
 function createCards(newDeckCards) {
   for (const card of newDeckCards) {
     const id = card.id
