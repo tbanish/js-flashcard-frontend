@@ -91,6 +91,48 @@ function startTestHandler() {
   renderNextCard(currentCard, newTest)
 }
 
+function renderNextCard(currentCard, newTest) {
+  const question = currentCard.question
+  const answer = currentCard.answer
+
+  document.querySelector(".test-card-question").innerText = question
+  document.querySelector(".test-card-answer").innerText = answer
+
+  let right = document.createElement("button")
+  right.className = "right answer btn"
+  right.innerHTML = '&#10003;'
+  document.querySelector(".test-buttons").appendChild(right)
+
+  let wrong = document.createElement("button")
+  wrong.className = "wrong answer btn"
+  wrong.innerHTML = "X"
+  document.querySelector(".test-buttons").appendChild(wrong)
+
+  right.addEventListener("click", (e) => {
+    logAnswer(e, currentCard, newTest)
+  })
+
+  wrong.addEventListener("click", (e) => {
+    logAnswer(e, currentCard, newTest)
+  })
+}
+
+function logAnswer(e, currentCard, newTest) {
+  if (e.target.className === "right answer btn") {
+    newTest.correctAnswers.push(currentCard)
+    document.querySelector(".correct-answers").innerText = newTest.correctAnswers.length
+    flipCardBack()
+    removeAnswerButtons()
+    cardsLeftInQueue(newTest)
+  } else {
+    newTest.incorrectAnswers.push(currentCard)
+    document.querySelector(".incorrect-answers").innerText = newTest.incorrectAnswers.length
+    flipCardBack()
+    removeAnswerButtons()
+    cardsLeftInQueue(newTest)
+  }
+}
+
 function createCards(newDeckCards) {
   for (const card of newDeckCards) {
     const id = card.id
