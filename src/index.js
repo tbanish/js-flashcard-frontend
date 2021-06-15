@@ -158,6 +158,30 @@ function endTest(newTest) {
   saveTest.addEventListener("click", () => handleSaveTestClick())
 }
 
+function handleClearTestClick() {
+  clearTestBox()
+}
+
+function handleSaveTestClick() {
+  clearTestBox()
+}
+
+function clearTestBox() {
+  document.querySelector(".test-card-question").innerText = ""
+  document.querySelector(".test-card-answer").innerText = ""
+  document.querySelector(".test-header").innerText = "Test Box"
+  document.querySelector(".clear.btn").remove()
+  document.querySelector(".save.btn").remove()
+  document.querySelector(".test-deck-selection").options[0].selected = 'selected'
+  document.querySelector(".correct-answers").innerText = 0
+  document.querySelector(".incorrect-answers").innerText = 0
+}
+
+function removeAnswerButtons() {
+  document.querySelector(".right").remove()
+  document.querySelector(".wrong").remove()
+}
+
 function createCards(newDeckCards) {
   for (const card of newDeckCards) {
     const id = card.id
