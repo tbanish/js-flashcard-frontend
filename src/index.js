@@ -5,8 +5,14 @@ const testsEndpoint = "http://localhost:3000/api/v1/tests"
 document.addEventListener('DOMContentLoaded', () => {
   const newDeckForm = document.getElementById("new-deck-form")
   const newCardForm = document.getElementById("new-card-form")
+  const startTest = document.querySelector(".start-test")
+  const testCard = document.querySelector(".test-card")
+
   newCardForm.addEventListener("submit", (e) => newCardFormHandler(e))
   newDeckForm.addEventListener("submit", (e) => newDeckFormHandler(e))
+  startTest.addEventListener("click", () => startTestHandler())
+  testCard.addEventListener("click", () => flipCard())
+
   loadDecks();
   loadTests();
 })
@@ -46,8 +52,8 @@ function loadTests() {
 }
 
 function handleTestSelection(e) {
-  const subject = e.target.value
-  Test.renderTest(subject)
+  let subject = e.target.value
+  renderTestHeader(subject)
 }
 
 function createCards(newDeckCards) {
@@ -217,9 +223,9 @@ function removeEditDeckForm() {
 function renderEditCardForm(card) {
   const editCardForm = document.createElement("FORM")
   const questionInputLabel = document.createElement("LABEL")
-  const questionInput = document.createElement("INPUT")
+  const questionInput = document.createElement("textarea")
   const answerInputLabel = document.createElement("LABEL")
-  const answerInput = document.createElement("INPUT")
+  const answerInput = document.createElement("textarea")
   const submitButton = document.createElement("button")
   const header = document.createElement("h3")
   const closeButton = document.createElement("button")
