@@ -321,3 +321,23 @@ select:hover {
 .start-test.btn {
   background: #b2d8b2;
 }
+
+.test-buttons {
+  margin: 8% 0 0 45%;
+}
+
+.right {
+  background: green;
+  color: white;
+  padding: 2%;
+  font-size: 1.1em;
+  margin: 0 5% 0 0;
+}
+
+.wrong {
+  background: red;
+  color: white;
+  padding: 2%;
+  font-size: 1.1em;
+  margin: 0 0 0 5%;
+}
