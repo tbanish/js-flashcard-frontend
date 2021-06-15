@@ -180,7 +180,7 @@ h3 {
 .delete-deck-button:hover,
 .delete-card-button:hover {
   font-weight: bolder;
-  font-size: 15px;
+  font-size: 1em;
   box-shadow: 3px 3px;
   cursor: pointer;
 }
