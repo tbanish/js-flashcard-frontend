@@ -286,3 +286,17 @@ select:hover {
   padding: 2%;
   box-shadow: 8px 8px 10px black;
 }
+
+.card-front {
+  background: purple;
+}
+
+.card-back {
+  background: green;
+  transform: rotateY( 180deg );
+}
+
+.test-card.is-flipped {
+  transform: rotateY(180deg);
+  transition: transform 0.7s;
+}
