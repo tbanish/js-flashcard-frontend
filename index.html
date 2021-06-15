@@ -49,10 +49,10 @@
             </select>
             <br><br>
             <label for="question">Question: </label>
-            <input type="text" name="question" value="">
+            <textarea type="text" name="question" value=""></textarea>
             <br><br>
             <label for="answer">Answer: </label>
-            <input type="text" name="answer" value="">
+            <textarea type="text" name="answer" value=""></textarea>
             <input class="btn" type="submit" value="create card">
           </form>
         </div>
@@ -63,19 +63,34 @@
         <option>--select a deck to test your knowledge--</option>
       </select>
 
+      <button class="start-test btn">Start Test</button>
+
     <div class="test-grid">
       <div class="test-box">
-        <h2>Test Box</h2>
+        <h2 class="test-header">Test Box</h2>
         <div class="scene">
           <div class="test-card">
-            
+            <div class="card-front face">
+              <h3>Question</h3>
+              <p class="test-card-question"></p>
+            </div>
+            <div class="card-back face">
+              <h3>Answer</h3>
+              <p class="test-card-answer"></p>
+            </div>
           </div>
+        </div>
+        <div class="test-buttons">
         </div>
       </div>
 
       <div class="score-stat-box">
         <div class="score-card">
           <h2>Score</h2>
+          <label for="correct-answers">Correct:</label>
+          <p class="correct-answers score">0</p>
+          <label for="incorrect-answers">InCorrect:</label>
+          <p class="incorrect-answers score">0</p>
         </div>
 
         <div class="stats">
