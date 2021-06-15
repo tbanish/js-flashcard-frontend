@@ -133,6 +133,31 @@ function logAnswer(e, currentCard, newTest) {
   }
 }
 
+function cardsLeftInQueue(newTest) {
+  if (newTest.cardQueue.length > 0) {
+    let nextCard = newTest.cardQueue.shift()
+    renderNextCard(nextCard, newTest)
+  } else {
+    endTest(newTest)
+  }
+}
+
+function endTest(newTest) {
+  document.querySelector(".test-header").innerText += ": Test is Over"
+  const clearTest = document.createElement("button")
+  clearTest.innerText = "clear"
+  clearTest.className = "clear btn"
+  document.querySelector(".test-buttons").appendChild(clearTest)
+
+  const saveTest = document.createElement("button")
+  saveTest.innerText = "save"
+  saveTest.className = "save btn"
+  document.querySelector(".test-buttons").appendChild(saveTest)
+
+  clearTest.addEventListener("click", () => handleClearTestClick())
+  saveTest.addEventListener("click", () => handleSaveTestClick())
+}
+
 function createCards(newDeckCards) {
   for (const card of newDeckCards) {
     const id = card.id
