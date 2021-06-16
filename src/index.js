@@ -86,6 +86,7 @@ function startTestHandler() {
   const cards = deck.cards
 
   const newTest = new Test
+  newTest.deckId = deck.id
   newTest.cardQueue = cards
   let currentCard = newTest.cardQueue.shift()
   renderNextCard(currentCard, newTest)
@@ -155,15 +156,50 @@ function endTest(newTest) {
   document.querySelector(".test-buttons").appendChild(saveTest)
 
   clearTest.addEventListener("click", () => handleClearTestClick())
-  saveTest.addEventListener("click", () => handleSaveTestClick())
+  saveTest.addEventListener("click", () => handleSaveTestClick(newTest))
 }
 
 function handleClearTestClick() {
   clearTestBox()
 }
 
-function handleSaveTestClick() {
+function handleSaveTestClick(newTest) {
+  const correct = newTest.correctAnswers.length
+  const incorrect = newTest.incorrectAnswers.length
+  const total =  correct + incorrect
+  const score = Math.ceil((correct/total) * 100)
+  newTest.score = score
+  newTest.correctIds = []
+  newTest.incorrectIds = []
+
+  for(answer of newTest.correctAnswers) {
+    newTest.correctIds.push(answer.id)
+  }
+
+  for(answer of newTest.incorrectAnswers) {
+    newTest.incorrectIds.push(answer.id)
+  }
+
+  postTest(newTest)
   clearTestBox()
+}
+
+function postTest(newTest) {
+  let bodyData = {
+    score: newTest.score,
+    correct_ids: newTest.correctIds.join(", "),
+    incorrect_ids: newTest.incorrectIds.join(", "),
+    deck_id: newTest.deckId
+  }
+  fetch(testsEndpoint, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(bodyData)
+  })
+  .then(resp => resp.json())
+  .then(test => {
+    console.log(test)
+  })
 }
 
 function clearTestBox() {
