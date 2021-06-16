@@ -382,12 +382,14 @@ select:hover {
   line-height: 1.5em;
 }
 
-.start-test.btn {
+.start-test.btn,
+.cancel-test.btn {
   background: #b2d8b2;
   transition: 0.3s;
 }
 
-.start-test.btn:hover {
+.start-test.btn:hover,
+.cancel-test.btn:hover {
   background: pink;
 }
 
