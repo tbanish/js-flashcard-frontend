@@ -9,13 +9,14 @@ header{
   background-color: #cdd6f2;
   height: 100px;
   border-bottom: 1px solid #cccccc;
+  padding: 2% 0 5% 0 ;
 }
 
 .test-grid {
   grid-template-columns: 2fr 1fr;
   display: grid;
   grid-column-gap: 3%;
-  margin: 5% 2% 10% 2%;
+  margin: 5% 2% 5% 2%;
   min-height: 550px;
 }
 
@@ -41,14 +42,84 @@ header{
   margin: 0 0 2.5% 0;
 }
 
+.timer {
+  background: yellow;
+  border-radius: 30px;
+  height: 25%;
+  margin: 0 0 5% 0;
+  padding: 3%;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.time.btn {
+  border-radius: 40px;
+}
+
+.timer-buttons {
+  border-radius: 20px;
+  border: 1px solid #ffffff;
+  background: #e5e500;
+  text-align: center;
+  width: 60%;
+  padding: 1%;
+  margin-left: 20%;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 3%;
+}
+
+.details {
+  background: #6666ff;
+  border-radius: 30px;
+  height: 30em;
+  box-shadow: 5px 5px 5px grey;
+  margin: 0 5% 0 0;
+  overflow: scroll;
+  padding: 0 5% 0 5%;
+}
+
 .stats {
   background: #8faa87;
   border-radius: 30px;
-  color: #ffffff;
-  min-height: 45%;
+  height: 30em;
   box-shadow: 5px 5px 5px grey;
-  padding: 5%;
-  margin: 2.5% 0 0 0;
+  margin: 0 0 0 2.5%;
+  overflow: scroll;
+  padding: 0 5% 0 5%;
+}
+
+.stat-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 2%;
+  grid-row-gap: 3%;
+}
+
+.stat {
+  border-radius: 10px;
+  border: 1px solid white;
+  background: #ffdb99;
+  text-align: center;
+}
+
+.stat-date {
+  background: #323232;
+  color: white;
+  padding: 2%;
+  margin: 0 20% 0 20%;
+  border-radius: 15px;
+  margin-top: 3%;
+}
+
+.stat-score {
+  color: red;
+}
+
+.stat-duration {
+  color: blue;
 }
 
 footer {
@@ -76,12 +147,13 @@ footer {
 }
 
 h1 {
-  margin:0;
+  margin: 0 20% 0 22%;
   text-align: center;
   font-family: Train One;
-  font-size: 4.5em;
+  font-size: 6em;
   display: block;
   color: #ffff99;
+  padding: 0;
 }
 
 h2 {
@@ -113,11 +185,16 @@ h3 {
 }
 
 #deck-container,
-#card-container,
-#new-form-container {
-  min-height: 375px;
+#card-container {
+  height: 50vh;
   border-radius: 30px;
   box-shadow: 5px 5px 5px grey;
+  overflow: scroll;
+}
+
+#new-form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .edit-deck-form,
@@ -172,6 +249,7 @@ h3 {
   font-family: Raleway;
   outline: none;
   transition: 0.2s;
+  box-shadow: 3px 3px 5px grey;
 }
 
 .btn:hover,
@@ -179,39 +257,25 @@ h3 {
 .edit-card-button:hover,
 .delete-deck-button:hover,
 .delete-card-button:hover {
-  font-weight: bolder;
-  font-size: 1em;
-  box-shadow: 3px 3px;
+  background: pink;
   cursor: pointer;
-}
-
-.btn:active,
-.edit-deck-button:active,
-.edit-card-button:active,
-.delete-deck-button:active,
-.delete-card-button:active {
-  transform: translateY(4px);
-  box-shadow: none;
-}
-
-.btn:focus,
-.edit-deck-button:focus,
-.edit-card-button:focus,
-.delete-deck-button:focus,
-.delete-card-button:focus {
-  outline: none;
 }
 
 .start {
   margin: 10% 0 0 45%;
 }
 
-input {
+input, textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   padding: 5px;
   font-family: Raleway;
+}
+
+textarea {
+  width: 90%;
+  height: 5em;
 }
 
 .card-question {
@@ -292,7 +356,7 @@ select:hover {
 }
 
 .card-back {
-  background: green;
+  background: blue;
   transform: rotateY( 180deg );
 }
 
@@ -320,6 +384,11 @@ select:hover {
 
 .start-test.btn {
   background: #b2d8b2;
+  transition: 0.3s;
+}
+
+.start-test.btn:hover {
+  background: pink;
 }
 
 .test-buttons {
@@ -342,18 +411,37 @@ select:hover {
   margin: 0 0 0 5%;
 }
 
-.right.answer.btn:hover,
- .wrong.answer.btn:hover{
-  font-size: 1.1em;
-  border: 1px solid yellow;
-  box-shadow: none;
-}
-
 .test-card.hidden {
   display: none;
 }
 
-textarea {
-  width: 90%;
-  height: 5em;
+.answers {
+  background: #191919;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5%;
+  margin: 0 0 2% 20%;
+  width: 50%;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.score, .percentage {
+  padding: 0;
+  margin: 0;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+.answers.final-score {
+  background: #ffffb2;
+  border: 3px solid grey;
+  color: black;
 }
