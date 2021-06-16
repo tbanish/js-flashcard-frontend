@@ -34,12 +34,13 @@ function cancelTest(t, newTest) {
   document.querySelector(".timer-header").innerText = "00:00:00"
   Test.all.splice(Test.all.indexOf(newTest))
   removeAnswerButtons()
+  clearTestBox()
 }
 
 function timeConverter(newTest) {
     newTest.duration += 1000
     let ms = newTest.duration
-    console.log(ms)
+
     let seconds = ms / 1000
     let hours = parseInt( seconds / 3600 )
     seconds = seconds % 3600
