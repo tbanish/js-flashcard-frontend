@@ -17,6 +17,27 @@
     <header>
       <h1>Flash Cards</h1>
     </header>
+    <div id="new-form-container">
+      <form class="new-form" id="new-deck-form" action="index.html" method="post">
+        <h2>Create a New Deck</h2>
+        <label for="subject">Subject: </label>
+        <input type="text" name="subject" value="">
+        <input class="btn" type="submit" value="create deck">
+      </form>
+      <form class="new-form" id="new-card-form" action="index.html" method="post">
+        <h2>Add a Card</h2>
+        <select id="deck-selection">
+          <option id="default-selection">--select deck--</option>
+        </select>
+        <br><br>
+        <label for="question">Question: </label>
+        <textarea type="text" name="question" value=""></textarea>
+        <br><br>
+        <label for="answer">Answer: </label>
+        <textarea type="text" name="answer" value=""></textarea>
+        <input class="btn" type="submit" value="create card">
+      </form>
+    </div>
     <div class="grid-container">
       <div id="grid-col-1">
         <div id="deck-container">
@@ -24,7 +45,6 @@
           <ul id="deck-list"></ul>
         </div>
       </div>
-
       <div id="grid-col-2">
         <div id="card-container">
           <h2>Cards</h2>
@@ -32,30 +52,8 @@
           <ol id="card-list"></ol>
         </div>
       </div>
-
       <div id="grid-col-3">
         <div id="edit-form-container"></div>
-        <div id="new-form-container">
-          <form class="new-form" id="new-deck-form" action="index.html" method="post">
-            <h2>Create a New Deck</h2>
-            <label for="subject">Subject: </label>
-            <input type="text" name="subject" value="">
-            <input class="btn" type="submit" value="create deck">
-          </form>
-          <form class="new-form" id="new-card-form" action="index.html" method="post">
-            <h2>Add a Card</h2>
-            <select id="deck-selection">
-              <option id="default-selection">--select deck--</option>
-            </select>
-            <br><br>
-            <label for="question">Question: </label>
-            <textarea type="text" name="question" value=""></textarea>
-            <br><br>
-            <label for="answer">Answer: </label>
-            <textarea type="text" name="answer" value=""></textarea>
-            <input class="btn" type="submit" value="create card">
-          </form>
-        </div>
       </div>
     </div>
 
@@ -85,19 +83,43 @@
       </div>
 
       <div class="score-stat-box">
+        <div class="timer">
+          <h2 class="timer-header">00:00:00</h2>
+          <div class="timer-buttons">
+            <button class="pause time btn">Pause</button>
+            <button class="resume time btn">Resume</button>
+            <button class="cancel time btn">cancel</button>
+          </div>
+        </div>
         <div class="score-card">
           <h2>Score</h2>
-          <label for="correct-answers">Correct:</label>
-          <p class="correct-answers score">0</p>
-          <label for="incorrect-answers">InCorrect:</label>
-          <p class="incorrect-answers score">0</p>
-        </div>
-
-        <div class="stats">
-          <h2>Stats</h2>
+          <div class="answers correct">
+            <label for="correct-answers">Correct:</label>
+            <p class="correct-answers score">0</p>
+          </div>
+          <div class="answers incorrect">
+            <label for="incorrect-answers">Incorrect:</label>
+            <p class="incorrect-answers score">0</p>
+          </div>
+          <div class="answers final-score">
+            <label for="final-score">Score:</label>
+            <p class="percentage"></p>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="stat-grid">
+      <div class="stats">
+        <h2 class="stats-header">Stats</h2>
+        <div class="stat-list"></div>
+      </div>
+      <div class="details">
+        <h2>Details</h2>
+      </div>
+    </div>
+
+
 
     <footer> <p>&copy 2021 Tom Banish</p></footer>
   </body>
