@@ -10,57 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   newCardForm.addEventListener("submit", (e) => newCardFormHandler(e))
   newDeckForm.addEventListener("submit", (e) => newDeckFormHandler(e))
-  startTest.addEventListener("click", () => startTestHandler())
+  startTest.addEventListener("click", () => Test.startTest())
   testCard.addEventListener("click", () => flipCard())
 
   loadDecks();
   loadTests();
 })
-
-function startTimer(newTest) {
-  const t = setInterval(function() {
-    timeConverter(newTest)
-  }, 1000)
-  document.querySelector(".cancel").addEventListener("click", () => cancelTest(t, newTest))
-}
-
-function pauseTimer(t, newTest) {
-  clearInterval(t)
-  document.querySelector(".resume").addEventListener("click", () => startTimer(newTest))
-}
-
-function cancelTest(t, newTest) {
-  clearInterval(t)
-  document.querySelector(".timer-header").innerText = "00:00:00"
-  Test.all.splice(Test.all.indexOf(newTest))
-  removeAnswerButtons()
-  clearTestBox()
-}
-
-function timeConverter(newTest) {
-    newTest.duration += 1000
-    let ms = newTest.duration
-
-    let seconds = ms / 1000
-    let hours = parseInt( seconds / 3600 )
-    seconds = seconds % 3600
-    let minutes = parseInt( seconds / 60 )
-    seconds = seconds % 60;
-
-    if (minutes < 10) {
-        minutes = `0${minutes}`
-    }
-
-    if (seconds < 10) {
-        seconds = `0${seconds}`
-    }
-
-    if (hours < 10) {
-        hours = `0${hours}`
-    }
-
-    document.querySelector(".timer-header").innerText = `${hours}:${minutes}:${seconds}`
-}
 
 function loadDecks() {
   fetch(decksEndpoint)
@@ -99,230 +54,13 @@ function loadTests() {
 
 function handleTestSelection(e) {
   let subject = e.target.value
-  clearStats()
-  renderTestHeader(subject)
+  Test.clearStats()
+  Test.renderTestHeader(subject)
 
   if (subject !== "--select a deck to test your knowledge--") {
-    clearStats()
-    renderTestStats(subject)
+    Test.clearStats()
+    Test.renderTestStats(subject)
   }
-}
-
-function clearStats() {
-  document.querySelector(".stat-list").remove()
-  document.querySelector(".stats-header").innerText = "Stats"
-  const statList = document.createElement("div")
-  statList.className = "stat-list"
-  document.querySelector(".stats").appendChild(statList)
-  document.querySelector(".percentage").innerText = ""
-}
-
-function renderTestHeader(subject) {
-  let deck = Deck.findDeckBySubject(subject)
-
-  if (document.querySelector(".test-header").innerText !== "Test Box") {
-    document.querySelector(".test-header").innerText = "Test Box"
-  }
-
-  if (subject === "--select a deck to test your knowledge--") {
-    return
-  }
-
-  const header = document.querySelector(".test-header")
-  header.innerText = subject
-
-  document.querySelector(".test-card-question").innerText = ""
-  document.querySelector(".test-card-answer").innerText = ""
-  document.querySelector(".test-card").className = "test-card"
-  document.querySelector(".incorrect-answers.score").innerText = 0
-  document.querySelector(".correct-answers.score").innerText = 0
-}
-
-function renderTestStats(subject) {
-  let deck = Deck.findDeckBySubject(subject)
-  const tests = Test.findTestsByDeckId(deck.id)
-
-  document.querySelector(".stats-header").innerText = `Stats: ${subject}`
-
-  for (test of tests) {
-    renderStats(test)
-  }
-}
-
-function renderStats(test) {
-  const statList = document.querySelector(".stat-list")
-  const date = test.date
-  const duration = test.duration
-  const score = test.score
-
-  const statDiv = document.createElement("div")
-  const dateTag = document.createElement("p")
-  const durationTag = document.createElement("p")
-  const scoreTag = document.createElement("p")
-
-  dateTag.innerText = date
-  dateTag.className = "stat-date"
-  scoreTag.innerText = `${score}%`
-  scoreTag.className = "stat-score"
-  statDiv.className = "stat"
-
-  if (duration !== null) {
-    durationTag.innerText = `${duration} mins`
-  } else {
-    durationTag.innerText = `--`
-  }
-
-  durationTag.className = "stat-duration"
-
-  statList.appendChild(statDiv)
-  statDiv.appendChild(dateTag)
-  statDiv.appendChild(durationTag)
-  statDiv.appendChild(scoreTag)
-}
-
-function startTestHandler() {
-  if (document.querySelector(".test-header").innerText === "Test Box") {
-    alert("select a deck first")
-  }
-
-  const deck = Deck.findDeckBySubject(document.querySelector(".test-header").innerText)
-  const cards = deck.cards
-
-  const newTest = new Test
-  newTest.deckId = deck.id
-  newTest.cardQueue = cards
-  newTest.duration = 0
-  let currentCard = newTest.cardQueue.shift()
-  startTimer(newTest)
-  renderNextCard(currentCard, newTest)
-}
-
-function renderNextCard(currentCard, newTest) {
-  const question = currentCard.question
-  const answer = currentCard.answer
-
-  document.querySelector(".test-card-question").innerText = question
-  document.querySelector(".test-card-answer").innerText = answer
-
-  let right = document.createElement("button")
-  right.className = "right answer btn"
-  right.innerHTML = '&#10003;'
-  document.querySelector(".test-buttons").appendChild(right)
-
-  let wrong = document.createElement("button")
-  wrong.className = "wrong answer btn"
-  wrong.innerHTML = "X"
-  document.querySelector(".test-buttons").appendChild(wrong)
-
-  right.addEventListener("click", (e) => {
-    logAnswer(e, currentCard, newTest)
-  })
-
-  wrong.addEventListener("click", (e) => {
-    logAnswer(e, currentCard, newTest)
-  })
-}
-
-function logAnswer(e, currentCard, newTest) {
-  if (e.target.className === "right answer btn") {
-    newTest.correctAnswers.push(currentCard)
-    document.querySelector(".correct-answers.score").innerText = newTest.correctAnswers.length
-    flipCardBack()
-    removeAnswerButtons()
-    cardsLeftInQueue(newTest)
-  } else {
-    newTest.incorrectAnswers.push(currentCard)
-    document.querySelector(".incorrect-answers.score").innerText = newTest.incorrectAnswers.length
-    flipCardBack()
-    removeAnswerButtons()
-    cardsLeftInQueue(newTest)
-  }
-}
-
-function cardsLeftInQueue(newTest) {
-  if (newTest.cardQueue.length > 0) {
-    let nextCard = newTest.cardQueue.shift()
-    renderNextCard(nextCard, newTest)
-  } else {
-    endTest(newTest)
-  }
-}
-
-function endTest(newTest) {
-  const correct = newTest.correctAnswers.length
-  const incorrect = newTest.incorrectAnswers.length
-  const total = correct + incorrect
-  const score = Math.ceil((correct/total) * 100)
-
-  document.querySelector(".test-header").innerText += ": Test is Over"
-  document.querySelector(".percentage").innerText = ` ${score}%`
-  const clearTest = document.createElement("button")
-  clearTest.innerText = "clear"
-  clearTest.className = "clear btn"
-  document.querySelector(".test-buttons").appendChild(clearTest)
-
-  const saveTest = document.createElement("button")
-  saveTest.innerText = "save"
-  saveTest.className = "save btn"
-  document.querySelector(".test-buttons").appendChild(saveTest)
-
-  clearTest.addEventListener("click", () => handleClearTestClick(newTest))
-  saveTest.addEventListener("click", () => handleSaveTestClick(newTest))
-}
-
-function handleClearTestClick(newTest) {
-  Test.all.splice(Test.all.indexOf(newTest))
-  clearTestBox()
-  clearStats()
-}
-
-function handleSaveTestClick(newTest) {
-  const correct = newTest.correctAnswers.length
-  const incorrect = newTest.incorrectAnswers.length
-  const total =  correct + incorrect
-  const score = Math.ceil((correct/total) * 100)
-  newTest.score = score
-  newTest.correctIds = []
-  newTest.incorrectIds = []
-
-  for(answer of newTest.correctAnswers) {
-    newTest.correctIds.push(answer.id)
-  }
-
-  for(answer of newTest.incorrectAnswers) {
-    newTest.incorrectIds.push(answer.id)
-  }
-
-  Test.all.splice(Test.all.indexOf(newTest))
-  postTest(newTest)
-  clearTestBox()
-  clearStats()
-}
-
-function postTest(newTest) {
-  let bodyData = {
-    score: newTest.score,
-    correct_ids: newTest.correctIds.join(", "),
-    incorrect_ids: newTest.incorrectIds.join(", "),
-    deck_id: newTest.deckId
-  }
-  fetch(testsEndpoint, {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(bodyData)
-  })
-  .then(resp => resp.json())
-  .then(test => {
-    const score = test.score
-    const correctIds = test.correct_ids
-    const incorrectIds = test.incorrect_ids
-    const deckId = test.deck_id
-    const testId = parseInt(test.id)
-    const date = new Date(test.created_at)
-    const duration = "--"
-
-    const newTest = new Test(testId, duration, score, correctIds, incorrectIds, deckId, date.toLocaleDateString())
-  })
 }
 
 function clearTestBox() {
@@ -755,4 +493,30 @@ function deleteCard(card) {
   Card.delete(card)
   document.getElementById(`card-${card.id}`).remove()
   document.getElementById("card-list-header").innerText = ""
+}
+
+function postTest(newTest) {
+  let bodyData = {
+    score: newTest.score,
+    correct_ids: newTest.correctIds.join(", "),
+    incorrect_ids: newTest.incorrectIds.join(", "),
+    deck_id: newTest.deckId
+  }
+  fetch(testsEndpoint, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(bodyData)
+  })
+  .then(resp => resp.json())
+  .then(test => {
+    const score = test.score
+    const correctIds = test.correct_ids
+    const incorrectIds = test.incorrect_ids
+    const deckId = test.deck_id
+    const testId = parseInt(test.id)
+    const date = new Date(test.created_at)
+    const duration = "--"
+
+    const newTest = new Test(testId, duration, score, correctIds, incorrectIds, deckId, date.toLocaleDateString())
+  })
 }
