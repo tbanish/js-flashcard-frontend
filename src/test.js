@@ -33,9 +33,13 @@ class Test {
     newTimer.activatePauseButton()
     newTest.timer = newTimer
     newTest.renderNextCard(currentCard)
+    document.querySelector(".pause").disabled = false
+    document.querySelector(".resume").disabled = false
 
     cancelTest.addEventListener("click", () => {
-      newTimer.stopTimer()
+      newTimer.clearTimer()
+      document.querySelector(".pause").disabled = true
+      document.querySelector(".resume").disabled = true
       removeAnswerButtons()
       newTest.handleClearTestClick()
     })
