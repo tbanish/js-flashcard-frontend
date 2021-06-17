@@ -226,6 +226,109 @@ class Test {
     statDiv.appendChild(dateTag)
     statDiv.appendChild(durationTag)
     statDiv.appendChild(scoreTag)
+
+    statDiv.addEventListener("click", () => this.renderDetails(test))
+  }
+
+  static findCorrectCards(test) {
+    let correctCards = []
+
+    if (test.correctIds.length === 0) {
+      return correctCards
+    }
+
+    for(const id of test.correctIds.split(",")) {
+      let card = Card.all.find(card => card.id === parseInt(id))
+      correctCards.push(card)
+    }
+
+    return correctCards
+  }
+
+  static findIncorrectCards(test) {
+    let incorrectCards = []
+
+    if (test.incorrectIds.length === 0) {
+      return incorrectCards
+    }
+
+    for(const id of test.incorrectIds.split(",")) {
+      let card = Card.all.find(card => card.id === parseInt(id))
+      incorrectCards.push(card)
+    }
+
+    return incorrectCards
+  }
+
+  static renderDetails(test) {
+    const correctCards = this.findCorrectCards(test)
+    const incorrectCards = this.findIncorrectCards(test)
+    const detailsDiv = document.querySelector(".details")
+
+    const testDetailsDiv = document.createElement("div")
+    testDetailsDiv.className = "test-deatils"
+    detailsDiv.appendChild(testDetailsDiv)
+
+    const testDateHeader = document.createElement("h3")
+    testDateHeader.innerText = test.date
+    testDetailsDiv.appendChild(testDateHeader)
+
+    const testDurationScoreDiv = document.createElement("div")
+    testDurationScoreDiv.className = "test-duration-score"
+    testDetailsDiv.appendChild(testDurationScoreDiv)
+
+    const testDurationTag = document.createElement("p")
+    testDurationTag.className = "test-duration"
+    testDurationTag.innerText = Test.timeConverter(test.duration)
+    testDurationScoreDiv.appendChild(testDurationTag)
+
+    const testScoreTag = document.createElement("p")
+    testScoreTag.className = "test-score"
+    testScoreTag.innerText = `${test.score}%`
+    testDurationScoreDiv.appendChild(testScoreTag)
+
+    const correctAnswersHeader = document.createElement("h3")
+    correctAnswersHeader.className = "correct-answers"
+    correctAnswersHeader.innerText = "Correct Answers"
+    testDetailsDiv.appendChild(correctAnswersHeader)
+
+    const correctCardCollectionDiv = document.createElement("div")
+    correctCardCollectionDiv.className = "correct-card-collection"
+    testDetailsDiv.appendChild(correctCardCollectionDiv)
+
+    const incorrectAnswersHeader = document.createElement("h3")
+    incorrectAnswersHeader.className = "incorrect-answers"
+    incorrectAnswersHeader.innerText = "Incorrect Answers"
+    testDetailsDiv.appendChild(incorrectAnswersHeader)
+
+    const incorrectCardCollectionDiv = document.createElement("div")
+    incorrectCardCollectionDiv.className = "incorrect-card-collection"
+    testDetailsDiv.appendChild(incorrectCardCollectionDiv)
+
+
+    for(const card of correctCards) {
+      const correctCardDiv = document.createElement("div")
+      const correctTestQuestionTag = document.createElement("p")
+      const correctTestAnswerTag = document.createElement("p")
+      correctTestQuestionTag.innerText = card.question
+      correctTestAnswerTag.innerText = card.answer
+      correctCardCollectionDiv.appendChild(correctCardDiv)
+      correctCardDiv.appendChild(correctTestQuestionTag)
+      correctCardDiv.appendChild(correctTestAnswerTag)
+    }
+
+    for(const card of incorrectCards) {
+      const incorrectCardDiv = document.createElement("div")
+      const incorrectTestQuestionTag = document.createElement("p")
+      const incorrectTestAnswerTag = document.createElement("p")
+      incorrectTestQuestionTag.innerText = card.question
+      incorrectTestAnswerTag.innerText = card.answer
+      incorrectCardCollectionDiv.appendChild(incorrectCardDiv)
+      incorrectCardDiv.appendChild(incorrectTestQuestionTag)
+      incorrectCardDiv.appendChild(incorrectTestAnswerTag)
+    }
+
+
   }
 }
 
