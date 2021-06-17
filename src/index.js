@@ -64,6 +64,20 @@ function handleTestSelection(e) {
   }
 }
 
+function shuffleCards(cards) {
+  let currentIndex = cards.length
+  let randomIndex
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
+
+    [cards[currentIndex], cards[randomIndex]] = [cards[randomIndex], cards[currentIndex]]
+  }
+
+  return cards
+}
+
 function clearTestBox() {
   document.querySelector(".test-card-question").innerText = ""
   document.querySelector(".test-card-answer").innerText = ""
