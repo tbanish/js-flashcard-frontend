@@ -55,6 +55,7 @@ function loadTests() {
 function handleTestSelection(e) {
   let subject = e.target.value
   Test.clearStats()
+  Test.removeDetails()
   Test.renderTestHeader(subject)
 
   if (subject !== "--select a deck to test your knowledge--") {
