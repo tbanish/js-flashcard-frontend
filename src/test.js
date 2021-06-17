@@ -19,7 +19,7 @@ class Test {
     }
 
     const deck = Deck.findDeckBySubject(document.querySelector(".test-header").innerText)
-    const cards = deck.cards
+    const cards = shuffleCards(deck.cards)
     const cancelTest = document.querySelector(".cancel-test")
 
     const newTest = new Test
