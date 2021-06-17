@@ -185,10 +185,28 @@ class Test {
     }
   }
 
+  static timeConverter(ms) {
+      let seconds = ms / 1000
+      let hours = parseInt( seconds / 3600 )
+      seconds = seconds % 3600
+      let minutes = parseInt( seconds / 60 )
+      seconds = seconds % 60;
+
+      if (hours === 0 && minutes === 0 && seconds > 0) {
+        return `${seconds} sec`
+      } else if (hours === 0 && minutes !== 0) {
+        return `${minutes} min ${seconds} sec`
+      } else if (hours !== 0 && minutes !== 0 && seconds !== 0) {
+        return `${hours} hrs ${minutes} mins ${seconds} sec`
+      } else {
+        return 'n/a'
+      }
+  }
+
   static renderStats(test) {
     const statList = document.querySelector(".stat-list")
     const date = test.date
-    const duration = test.duration
+    const duration = Test.timeConverter(test.duration)
     const score = test.score
 
     const statDiv = document.createElement("div")
@@ -201,13 +219,7 @@ class Test {
     scoreTag.innerText = `${score}%`
     scoreTag.className = "stat-score"
     statDiv.className = "stat"
-
-    if (duration !== null) {
-      durationTag.innerText = `${duration} mins`
-    } else {
-      durationTag.innerText = `--`
-    }
-
+    durationTag.innerText = duration
     durationTag.className = "stat-duration"
 
     statList.appendChild(statDiv)
