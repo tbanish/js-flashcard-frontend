@@ -23,6 +23,10 @@ class Timer {
     this.test.interval = interval
   }
 
+  clearTimer() {
+    clearInterval(this.test.interval)
+  }
+
   stopTimer() {
     this.activateResumeButton()
     clearInterval(this.test.interval)
