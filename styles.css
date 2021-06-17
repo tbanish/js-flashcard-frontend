@@ -103,6 +103,12 @@ header{
   border: 1px solid white;
   background: #ffdb99;
   text-align: center;
+  transition: 0.3s;
+}
+
+.stat:hover {
+  cursor: pointer;
+  background: #ffc04c;
 }
 
 .stat-date {
