@@ -500,7 +500,8 @@ function postTest(newTest) {
     score: newTest.score,
     correct_ids: newTest.correctIds.join(", "),
     incorrect_ids: newTest.incorrectIds.join(", "),
-    deck_id: newTest.deckId
+    deck_id: newTest.deckId,
+    duration: newTest.duration
   }
   fetch(testsEndpoint, {
     method: "POST",
@@ -515,8 +516,7 @@ function postTest(newTest) {
     const deckId = test.deck_id
     const testId = parseInt(test.id)
     const date = new Date(test.created_at)
-    const duration = "--"
-
+    const duration = test.duration
     const newTest = new Test(testId, duration, score, correctIds, incorrectIds, deckId, date.toLocaleDateString())
   })
 }
