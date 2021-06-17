@@ -227,7 +227,10 @@ class Test {
     statDiv.appendChild(durationTag)
     statDiv.appendChild(scoreTag)
 
-    statDiv.addEventListener("click", () => this.renderDetails(test))
+    statDiv.addEventListener("click", () => {
+      this.removeDetails()
+      this.renderDetails(test)
+    })
   }
 
   static findCorrectCards(test) {
@@ -266,7 +269,7 @@ class Test {
     const detailsDiv = document.querySelector(".details")
 
     const testDetailsDiv = document.createElement("div")
-    testDetailsDiv.className = "test-deatils"
+    testDetailsDiv.className = "test-details"
     detailsDiv.appendChild(testDetailsDiv)
 
     const testDateHeader = document.createElement("h3")
@@ -308,8 +311,11 @@ class Test {
 
     for(const card of correctCards) {
       const correctCardDiv = document.createElement("div")
+      correctCardDiv.className = "correct-card"
       const correctTestQuestionTag = document.createElement("p")
+      correctTestQuestionTag.className = "details-question"
       const correctTestAnswerTag = document.createElement("p")
+      correctTestAnswerTag.className = "details-answer"
       correctTestQuestionTag.innerText = card.question
       correctTestAnswerTag.innerText = card.answer
       correctCardCollectionDiv.appendChild(correctCardDiv)
@@ -319,16 +325,24 @@ class Test {
 
     for(const card of incorrectCards) {
       const incorrectCardDiv = document.createElement("div")
+      incorrectCardDiv.className = "incorrect-card"
       const incorrectTestQuestionTag = document.createElement("p")
+      incorrectTestQuestionTag.className = "details-question"
       const incorrectTestAnswerTag = document.createElement("p")
+      incorrectTestAnswerTag.className = "details-answer"
       incorrectTestQuestionTag.innerText = card.question
       incorrectTestAnswerTag.innerText = card.answer
       incorrectCardCollectionDiv.appendChild(incorrectCardDiv)
       incorrectCardDiv.appendChild(incorrectTestQuestionTag)
       incorrectCardDiv.appendChild(incorrectTestAnswerTag)
     }
+  }
 
 
+  static removeDetails() {
+    if (document.querySelector(".test-details")) {
+      document.querySelector(".test-details").remove()
+    }
   }
 }
 
