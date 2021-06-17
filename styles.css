@@ -477,3 +477,8 @@ select:hover {
   border-radius: 10px;
   margin-bottom: 2%;
 }
+
+.details-answer {
+  color: #7f0000;
+  font-style: italic;
+}
