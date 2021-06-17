@@ -6,7 +6,7 @@ body {
 
 header{
   margin:0;
-  background-color: #cdd6f2;
+  background-color: #a56251;
   height: 100px;
   border-bottom: 1px solid #cccccc;
   padding: 2% 0 5% 0 ;
@@ -47,7 +47,7 @@ h3 {
 }
 
 #new-form-container {
-  background-color: #d1d9b8;
+  background-color: #dbc0b9;
   color: white;
 }
 
@@ -103,7 +103,7 @@ select:hover {
 
 /* grid 1 - decks */
 #deck-container {
-  background-color: #8c8c8c;
+  background-color: #5194a5;
   color: white;
   padding: 5px;
 }
@@ -123,11 +123,19 @@ select:hover {
 
 /* grid 2 - cards */
 .card-question {
-  color: black;
+  color: #ffffff;
   transition: 0.3s;
+  background: #b266b2;
+  border-radius: 4px;
+  padding: 1%;
+  margin-right: 10%;
 }
 
-.card-question:hover,
+.card-question:hover {
+  background: #800080;
+  cursor: pointer;
+}
+
 #deck-list li:hover {
   font-weight: bolder;
   color: #ffff7f;
@@ -135,10 +143,15 @@ select:hover {
 }
 
 .card-answer {
-  color: #7f0000;
+  color: black;
   padding-right: 10px;
   line-height: 1.6em;
   font-size: 0.9em;
+  background: #ffc966;
+  margin-right: 10%;
+  border-radius: 4px;
+  padding: 2%;
+
 }
 
 .btn,
@@ -166,7 +179,7 @@ select:hover {
 }
 
 #card-container {
-  background-color: #d9c1b8;
+  background-color: #cadee4;
   color: white;
   padding: 10px;
   box-shadow:
@@ -183,11 +196,11 @@ select:hover {
 .edit-card-form {
   min-height: 275px;
   border-radius: 25px;
-  background-color: #ffd27f;
+  background-color: #5194a5;
   color: white;
   margin-bottom: 5px;
   padding: 30px;
-  border: 1px solid #e0e0e0;
+  /* border: 1px solid #e0e0e0; */
   box-shadow: 5px 5px 5px grey;
 }
 
@@ -228,7 +241,7 @@ select:hover {
 }
 
 .test-box {
-  background: #fb9b8f;
+  background: #dbc0b9;
   border-radius: 30px;
   color: #ffffff;
   min-height: 100%;
@@ -266,7 +279,7 @@ select:hover {
 
 /* score */
 .score-card{
-  background: #c4aae3;
+  background: #b9d4db;
   border-radius: 30px;
   color: #ffffff;
   min-height: 45%;
@@ -276,7 +289,8 @@ select:hover {
 }
 
 .answers {
-  background: #191919;
+  background: #dbc0b9;
+  border: 1px solid #ffffff;
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -301,9 +315,9 @@ select:hover {
 }
 
 .answers.final-score {
-  background: #ffffb2;
-  border: 3px solid grey;
-  color: black;
+  background-color: #5194a5;
+  border: 3px solid white;
+  color: #ffffff;
 }
 
 /* card flip */
@@ -335,11 +349,11 @@ select:hover {
 }
 
 .card-front {
-  background: purple;
+  background: #b184bd;
 }
 
 .card-back {
-  background: blue;
+  background: #ffb732;
   transform: rotateY( 180deg );
 }
 
@@ -367,7 +381,7 @@ select:hover {
 
 /* timer */
 .timer {
-  background: yellow;
+  background: #b9d4db;
   border-radius: 30px;
   height: 25%;
   margin: 0 0 5% 0;
@@ -382,7 +396,7 @@ select:hover {
 .timer-buttons {
   border-radius: 20px;
   border: 1px solid #ffffff;
-  background: #e5e500;
+  background: #dbc0b9;
   text-align: center;
   width: 60%;
   padding: 1%;
@@ -397,7 +411,7 @@ select:hover {
 }
 
 .stats {
-  background: #8faa87;
+  background: #5194a5;
   border-radius: 30px;
   height: 30em;
   box-shadow: 5px 5px 5px grey;
@@ -416,14 +430,14 @@ select:hover {
 .stat {
   border-radius: 10px;
   border: 1px solid white;
-  background: #ffdb99;
+  background: #fff1b9;
   text-align: center;
   transition: 0.3s;
 }
 
 .stat:hover {
   cursor: pointer;
-  background: #ffc04c;
+  background: #ffdd51
 }
 
 .stat-date {
@@ -440,11 +454,11 @@ select:hover {
 }
 
 .stat-duration {
-  color: blue;
+  color: grey;
 }
 
 .details {
-  background: #6666ff;
+  background: #b9d4db;
   border-radius: 30px;
   height: 30em;
   box-shadow: 5px 5px 5px grey;
@@ -453,42 +467,56 @@ select:hover {
   padding: 0 5% 0 5%;
 }
 
+.correct-answers {
+  color: green;
+}
+
+.incorrect-answers {
+  color: red;
+}
+
 .test-duration-score {
-  background: #ccccff;
+  background: #5194a5;
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;
   border-radius: 10px;
   margin: 5% 0 5% 0;
+  color: white;
 }
 
 .correct-card-collection,
 .incorrect-card-collection {
-  background: #ccccff;
+  background: #5194a5;
   border-radius: 10px;
   margin: 5% 0 5% 0;
-  padding: 5%;
+  padding: 2%;
 }
 
 .correct-card, .incorrect-card {
-  background: #ffffff;
-  padding: 2%;
+  background: #323232;
+  padding: 3%;
   border-radius: 10px;
   margin-bottom: 2%;
 }
 
+.details-question {
+  font-size: 1.1em;
+  color: #ad5aad;
+}
+
 .details-answer {
-  color: #7f0000;
+  color: #ffa500;
   font-style: italic;
 }
 
 footer {
   height: 60px;
   margin: 5% 0 0 0;
-  background: #cdd6f2;
+  background: #a56251;
   padding: 1%;
   border-top: 1px solid #cccccc;
-  color: grey;
+  color: lightgrey;
   bottom: 0;
 }
 
