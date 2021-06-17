@@ -114,6 +114,8 @@ class Test {
     saveTest.innerText = "save"
     saveTest.className = "save btn"
     document.querySelector(".test-buttons").appendChild(saveTest)
+    document.querySelector(".pause").disabled = true
+    document.querySelector(".resume").disabled = true
 
     clearTest.addEventListener("click", () => this.handleClearTestClick())
     saveTest.addEventListener("click", () => this.handleSaveTestClick())
