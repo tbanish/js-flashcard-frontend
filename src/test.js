@@ -20,6 +20,7 @@ class Test {
 
     const deck = Deck.findDeckBySubject(document.querySelector(".test-header").innerText)
     const cards = deck.cards
+    const cancelTest = document.querySelector(".cancel-test")
 
     const newTest = new Test
     newTest.deckId = deck.id
@@ -32,6 +33,12 @@ class Test {
     newTimer.activatePauseButton()
     newTest.timer = newTimer
     newTest.renderNextCard(currentCard)
+
+    cancelTest.addEventListener("click", () => {
+      newTimer.stopTimer()
+      removeAnswerButtons()
+      newTest.handleClearTestClick()
+    })
   }
 
   renderNextCard(currentCard) {
