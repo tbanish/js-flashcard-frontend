@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   newDeckForm.addEventListener("submit", (e) => newDeckFormHandler(e))
   startTest.addEventListener("click", () => Test.startTest())
   testCard.addEventListener("click", () => flipCard())
+  document.querySelector(".pause").disabled = true
+  document.querySelector(".resume").disabled = true
 
   loadDecks();
   loadTests();
