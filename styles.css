@@ -4,22 +4,35 @@ body {
   background-color: #f3ebd2;
 }
 
-header{
+html {
+  scroll-behavior: smooth;
+}
+
+header {
   margin:0;
   background-color: #a56251;
   height: 100px;
   border-bottom: 1px solid #cccccc;
   padding: 2% 0 5% 0 ;
+  width: 100%;
+}
+
+.logo {
+  max-width: 100%;
+  height: 100%;
+  padding-right: 0;
 }
 
 h1 {
-  margin: 0 20% 0 22%;
+  margin: 0 0 0 25%;
   text-align: center;
   font-family: Train One;
-  font-size: 6em;
+  font-size: 5em;
   display: block;
   color: #ffff99;
   padding: 0;
+  box-sizing: border-box;
+  display: inline;
 }
 
 h2 {
@@ -40,10 +53,57 @@ h3 {
   font-family: Chango;
 }
 
+.nav-bar {
+  background-color: #5194a5;
+  position: fixed;
+  right: 0;
+  top: -200px;
+  transition: top 0.5s;
+  opacity: 90%;
+}
+
+.nav-bar a {
+  display: block;
+  color: white;
+  text-align: left;
+  padding: 15px 50px 15px 50px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-bar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.line {
+  width: 30px;
+  height: 4px;
+  background-color: #5194a5;
+  margin: 6px 0;
+  border-radius: 20px;
+}
+
+.menu {
+  float: right;
+  right: 0;
+  position: fixed;
+  padding: 0.5% 1.5% 0 1.5%;
+  top: -50px;
+  transition: top 0.5s;
+  opacity: 90%;
+}
+
 /* new form container */
 #new-form-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.ins {
+  margin: 10% 10% 0 10%;
+  color: #666666;
+  line-height: 1.8em;
 }
 
 #new-form-container {
@@ -91,7 +151,7 @@ select:hover {
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.65fr;
   grid-column-gap: 5%;
-  margin: 5% 2% 5% 2%;
+  margin: 5% 2% 10% 2%;
 }
 
 #grid-col-1,
@@ -182,7 +242,6 @@ select:hover {
   background-color: #cadee4;
   color: white;
   padding: 10px;
-  box-shadow:
 }
 
 #card-list-header {
@@ -236,7 +295,7 @@ select:hover {
   grid-template-columns: 2fr 1fr;
   display: grid;
   grid-column-gap: 3%;
-  margin: 5% 2% 5% 2%;
+  margin: 5% 2% 10% 2%;
   min-height: 550px;
 }
 
@@ -333,7 +392,7 @@ select:hover {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.2s;
+  transition: transform 0.3s;
 }
 
 .face {
@@ -404,6 +463,10 @@ select:hover {
 }
 
 /* stats and details */
+.stat-deck-selection {
+  margin: 0 0 5% 5%;
+}
+
 .stat-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
