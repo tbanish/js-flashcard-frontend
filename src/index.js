@@ -19,6 +19,27 @@ document.addEventListener('DOMContentLoaded', () => {
   loadTests();
 })
 
+window.onmousemove = function(e) {mousePosition(e)}
+window.onscroll = function() {dropDownMenu()}
+
+function dropDownMenu() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.querySelector(".menu").style.top = "0";
+    setTimeout(function() {document.querySelector(".menu").style.top = "-50px"}, 5000)
+  } else {
+    document.querySelector(".menu").style.top = "-50px";
+  }
+}
+
+function mousePosition(e) {
+  if (e.clientX > 900 && e.clientY < 200) {
+    document.querySelector(".nav-bar").style.top = "0";
+    document.querySelector(".menu").style.top = "-50px";
+  } else if (e.clientX < 900) {
+    document.querySelector(".nav-bar").style.top = "-200px";
+  }
+}
+
 function loadDecks() {
   fetch(decksEndpoint)
   .then(resp => resp.json())
@@ -52,15 +73,22 @@ function loadTests() {
 
   const testDeckSelection = document.querySelector('.test-deck-selection')
   testDeckSelection.addEventListener("change", (e) => handleTestSelection(e))
+
+  const statDeckSelection = document.querySelector('.stat-deck-selection')
+  statDeckSelection.addEventListener("change", (e) => handleStatSelection(e))
 }
 
 function handleTestSelection(e) {
   let subject = e.target.value
+  Test.renderTestHeader(subject)
+}
+
+function handleStatSelection(e) {
+  let subject = e.target.value
   Test.clearStats()
   Test.removeDetails()
-  Test.renderTestHeader(subject)
 
-  if (subject !== "--select a deck to test your knowledge--") {
+  if (subject !== "--select a deck to review test stats--") {
     Test.clearStats()
     Test.renderTestStats(subject)
   }
@@ -81,8 +109,8 @@ function shuffleCards(cards) {
 }
 
 function clearTestBox() {
-  document.querySelector(".test-card-question").innerText = ""
-  document.querySelector(".test-card-answer").innerText = ""
+  document.querySelector(".test-card-question").innerText = "Ready to test your knowledge? (If your answer is yes, click here.)"
+  document.querySelector(".test-card-answer").innerText = "Select a deck from the menu above and then click start to begin. Once the test is over you will be given the chance to save or discard your results."
   document.querySelector(".test-header").innerText = "Test Box"
 
   document.querySelector(".test-deck-selection").options[0].selected = 'selected'
