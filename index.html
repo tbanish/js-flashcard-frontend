@@ -15,8 +15,20 @@
     <title></title>
   </head>
   <body>
-    <header>
-      <h1>Flash Cards</h1>
+    <div class="menu">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+
+    <div class="nav-bar">
+      <a href="#top" >Create</a>
+      <a href="#decks">Edit</a>
+      <a href="#test" >Test</a>
+      <a href="#stats" >Stats</a>
+    </div>
+    <header id="top">
+      <h1>Flash <img class="logo" src="public/images/flash_card_logo_3.png" alt=""> Cards</h1>
     </header>
     <div id="new-form-container">
       <form class="new-form" id="new-deck-form" action="index.html" method="post">
@@ -24,6 +36,7 @@
         <label for="subject">Subject: </label>
         <input type="text" name="subject" value="">
         <input class="btn" type="submit" value="create deck">
+        <p class="new-form-instructions ins">To begin building a deck, start by giving it a subject name. Once the deck subject has been made you can start adding cards by selecting the deck from the drop down menu and submitting questions and answers.</p>
       </form>
       <form class="new-form" id="new-card-form" action="index.html" method="post">
         <h2>Add a Card</h2>
@@ -39,6 +52,7 @@
         <input class="btn" type="submit" value="create card">
       </form>
     </div>
+    <div id="decks"></div>
     <div class="grid-container">
       <div id="grid-col-1">
         <div id="deck-container">
@@ -54,10 +68,11 @@
         </div>
       </div>
       <div id="grid-col-3">
-        <div id="edit-form-container"></div>
+        <div id="edit-form-container">
+        </div>
       </div>
     </div>
-
+      <div id="test"></div>
       <select class="test-deck-selection">
         <option>--select a deck to test your knowledge--</option>
       </select>
@@ -72,11 +87,11 @@
           <div class="test-card">
             <div class="card-front face">
               <h3>Question</h3>
-              <p class="test-card-question"></p>
+              <p class="test-card-question">Ready to test your knowledge? (If your answer is yes, click here.)</p>
             </div>
             <div class="card-back face">
               <h3>Answer</h3>
-              <p class="test-card-answer"></p>
+              <p class="test-card-answer">Select a deck from the menu above and then click start to begin. Once the test is over you will be given the chance to save or discard your results.</p>
             </div>
           </div>
         </div>
@@ -109,6 +124,10 @@
         </div>
       </div>
     </div>
+
+    <select id="stats" class="stat-deck-selection">
+      <option>--select a deck to review test stats--</option>
+    </select>
 
     <div class="stat-grid">
       <div class="stats">
