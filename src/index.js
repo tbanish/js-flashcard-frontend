@@ -1,6 +1,6 @@
-const decksEndpoint = "https://shrouded-badlands-12024.herokuapp.com/api/v1/decks"
-const cardsEndpoint = "https://shrouded-badlands-12024.herokuapp.com/api/v1/cards"
-const testsEndpoint = "https://shrouded-badlands-12024.herokuapp.com/api/v1/tests"
+const decksEndpoint = "https://flashdeck.herokuapp.com/api/v1/decks"
+const cardsEndpoint = "https://flashdeck.herokuapp.com/api/v1/cards"
+const testsEndpoint = "https://flashdeck.herokuapp.com/api/v1/tests"
 
 document.addEventListener('DOMContentLoaded', () => {
   const newDeckForm = document.getElementById("new-deck-form")
